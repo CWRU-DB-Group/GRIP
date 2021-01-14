@@ -133,20 +133,23 @@ input:checked + .slider:before {
 .tp{ padding-left: 50px}
 
 #3i{margin-left: -100px}
-#rule-dis { height: 250px; overflow: scroll;}
+#rule-dis { height: 170px; width :100%; overflow: scroll;}
 
 .panel-subtitle {
     padding-bottom: 10px;
 }
 
-#cbody {height: 230px;}
+#cbody {height: 300px;}
 
-#performance-p{height: 230px;}
+#performance-p{height: 550px;}
+
 img {max-width: 100%;
     max-height: 100%;
     margin: auto;
-    display: block;}
+    display: block;
+    padding-top: 30px;}
 
+#exp-panel {margin-top: -250px;}
 
-
-
+#st {margin-top: -50px;}
+label{font-size: 10px;}

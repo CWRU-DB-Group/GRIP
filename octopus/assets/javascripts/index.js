@@ -1,7 +1,7 @@
 
 var tid = 1;
 var ptid = 0;
-var scenario = 'awesome';
+var scenario = 'refine';
 var pnodeslist = [];
 var pedgeslist = [];
 var explore = null;
@@ -81,7 +81,7 @@ function draw1(cptid) {
 }
 
 
-function draw(nodes, edges, ctid) {
+function draw(nodes, edges, ctid, literals) {
 
     var container = document.getElementById("mynetwork" + ctid);
     var data = {
@@ -134,6 +134,8 @@ function draw(nodes, edges, ctid) {
         },
     };
     var network = new vis.Network(container, data, options);
+
+    $("#literal"+ctid).append(literals);
     // network.on("click", function (params) {
     //
     //
@@ -142,25 +144,79 @@ function draw(nodes, edges, ctid) {
     // });
 
 }
+$("#load-rule").click(function () {
 
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-    //....
-})
+    var text1 = "c\n" +
+        "u1 RNA\n" +
+        "u2 virus\n" +
+        "u3 testing_method\n" +
+        "u2 possess u1\n" +
+        "u1 testedBy u3\n" +
+        "u2 testedBy u3 *\n";
 
-$("#add-rule").click(function () {
+    var text2 = "k\n" +
+        "u4 RNA\n" +
+        "u4’ RNA\n" +
+        "u5 disease\n" +
+        "u6 testing_method\n" +
+        "u7 disease\n" +
+        "u8 testing_method\n" +
+        "u4 causedBy u5\n" +
+        "u4’ causedBy u7\n" +
+        "u4 testedBy u6\n" +
+        "u4’ testedBy u8";
+
+    var text3 = "c\n" +
+        "u1 virus\n" +
+        "u2 virus\n" +
+        "u3 disease\n" +
+        "u1 causedBy u3\n" +
+        "u2 causedBy u3\n" +
+        "u1 variantOf u2 *\n" +
+        "l\n" +
+        "u1.realm = u2.realm";
+
+    var text4 = "c\n" +
+        "u1 virus\n" +
+        "u2 testing_method\n" +
+        "u3 enzyme\n" +
+        "u1 sensitiveTo u3\n" +
+        "u3 usedBy u2\n" +
+        "u1 testedBy u2 *";
+
+    appendRule(text1);
+    appendRule(text2);
+    appendRule(text3);
+    appendRule(text4);
+    alert("Done loading constraints.")
+
+
+});
+
+function appendRule (text) {
 
     var ctid = tid;
+    var literal = false;
     tid = tid + 1;
     var nodes = [];
     var edges = [];
-    var text = $('#rule-text').val();
     var lines = text.split("\n");
-    alert(ctid);
+
     var flag = false;
+    var literals = "";
+
     for (var i = 0; i < lines.length; i++) {
 
+        if(literal) {
+            literals = lines[i] + '\n';
+        }
+
         var line = lines[i].split(" ");
+
+
+
+
         if (i == 0 && line[0] == 'k') {
             flag = true;
             continue;
@@ -225,6 +281,13 @@ $("#add-rule").click(function () {
             continue;
         }
 
+        if (line[0] == 'l') {
+            literal = true;
+            continue;
+        }
+
+
+
     }
 
 
@@ -232,11 +295,21 @@ $("#add-rule").click(function () {
         "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
         "                                        <div id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
         "\n" +
-        "                                        </div>\n" + " <label class =\"center\">Rule" + " " + ctid + "</label>" +
+        "                                        </div>\n"  + "  <div id =\"literal" + ctid + "\"></div>"+" <label class =\"center\">Constraint" + " " + ctid + "</label>" +
         "                                    </div>\n");
 
 
-    draw(nodes, edges, ctid);
+    draw(nodes, edges, ctid ,literals);
+
+
+}
+
+
+
+$("#add-rule").click(function () {
+
+    var text = $('#rule-text').val();
+    appendRule(text);
 
 });
 $('#SPARQL').val("SELECT ?virus\n" +
@@ -247,7 +320,7 @@ $('#SPARQL').val("SELECT ?virus\n" +
     "}");
 
 
-$('#awesome').prop('checked', true);
+
 
 
 var cnodes0 = [];
@@ -260,8 +333,34 @@ pedgeslist[0] = cedges0;
 var cnodes1 = [];
 var cedges1 = [];
 
+var cnodes2 = [];
+var cedges2 = [];
+cnodes2.push({
+    id: 'Sr',
+    label: "Sr",
+    group: "pattern",
+    value: 10,
+});
+cnodes2.push({
+    id: 'S1',
+    label: "S1",
+    group: "pattern",
+    value: 10,
+});
+
+cedges2.push({
+    from: 'Sr',
+    to: 'S1',
+    color: GRAY,
+    width: 3.5,
+    label: "((v2,v3),(⊕(v2,v3),testedBy),φ1)",
+    arrows: "to",
+});
+
 pnodeslist[1] = cnodes1;
 pedgeslist[1] = cedges1;
+pnodeslist[2] = cnodes2;
+pedgeslist[2] = cedges2;
 
 cnodes0.push({
     id: 'Sr',
@@ -281,15 +380,9 @@ cnodes0.push({ id: 'S2',
     group: "pattern",
     value: 10,});
 
-cnodes0.push({ id: 'S3',
-    label: "S3",
-    group: "pattern",
-    value: 10,});
 
-cnodes0.push({ id: 'S4',
-    label: "S4",
-    group: "pattern",
-    value: 10,});
+
+
 
 cedges0.push({
     from: 'Sr',
@@ -300,23 +393,9 @@ cedges0.push({
     arrows: "to",
 });
 
-cedges0.push({
-    from: 'Sr',
-    to: 'S4',
-    color: RED,
-    width: 3.5,
-    arrows: "to",
-    dashes: true,
-});
 
-cedges0.push({
-    from: 'S2',
-    to: 'S3',
-    color: RED,
-    width: 3.5,
-    arrows: "to",
-    dashes: true,
-});
+
+
 
 cedges0.push({
     from: 'S2',
@@ -358,15 +437,9 @@ cnodes1.push({ id: 'S2',
     group: "pattern",
     value: 10,});
 
-cnodes1.push({ id: 'S3',
-    label: "S3",
-    group: "pattern",
-    value: 10,});
 
-cnodes1.push({ id: 'S4',
-    label: "S4",
-    group: "pattern",
-    value: 10,});
+
+
 
 cedges1.push({
     from: 'Sr',
@@ -386,26 +459,9 @@ cedges1.push({
     arrows: "to",
 });
 
-cedges1.push({
-    from: 'S3',
-    to: 'S2',
-    color: RED,
-    width: 3.5,
-    label: "((v0,v1),(⊕(v0,v1),variantOf),φ3)",font: { align: "bottom" },
-    arrows: "to",
-    dashes: true,
-    length: 40,
-});
 
-cedges1.push({
-    from: 'S2',
-    to: 'S4',
-    color: GRAY,
-    width: 3.5,
-    label: "((v2,v3),(⊕(v2,v3),testedBy),φ4)",
-    arrows: "to",
 
-});
+
 
 
 
@@ -414,12 +470,15 @@ $('#show-r').click(function () {
 
 
    if (scenario == 'awesome') {
+       draw1(2);
+   } else if(scenario == 'refine') {
        draw1(1);
    } else {
        draw1(0);
    }
+
    $(".e-forward").show();
-    $('img').show();
+   $('img').show();
 
 });
 
@@ -445,21 +504,24 @@ $("#radios").find('input[type=radio][name=miss]').change(function () {
         $("#mlink").hide();
         scenario = 'very-awesome';
 
-    } else {
+    } else if (this.value == 'no-awesome') {
         $("#manswer").show();
         $("#matt").hide();
         $("#mlink").hide();
         scenario = 'no-awesome';
+    } else {
+        scenario = 'refine';
     }
 });
 
 $(document).ready(function (){
-        $("#manswer").hide();
+
+       $("#query-answer").hide();
         $("#matt").hide();
         $("#mlink").show();
-        $(".e-backward").hide();
         $(".e-forward").hide();
         $('img').hide();
+
 });
 
 
@@ -469,9 +531,54 @@ $
 
 
   if (explore == 'f') {
-      $('.e-backward').show();
+      $('#ntabletbody').append("<tr class=\"e-backward\">\n" +
+          "                                                    <th scope=\"row\">S4</th>\n" +
+          "                                                    <td>(v0,v1)</td>\n" +
+          "                                                    <td>add(v0,v1), variantOf</td>\n" +
+          "                                                    <td>φ3</td>\n" +
+          "                                                </tr>");
+      $('#mtabletbody').append(" <tr class=\"e-backward\">\n" +
+          "                                                            <th scope=\"row\">φ3</th>\n" +
+          "                                                            <td>...</td>\n" +
+          "\n" +
+          "\n" +
+          "                                                        </tr>");
+      cnodes1.push({ id: 'S4',
+          label: "S4",
+          group: "pattern",
+          value: 10,});
+      cedges1.push({
+          from: 'S2',
+          to: 'S4',
+          color: GRAY,
+          width: 3.5,
+          label: "((v2,v3),(⊕(v2,v3),testedBy),φ4)",
+          arrows: "to",
+          length:25,
+
+      });
+      draw1(1);
+
+
   } else {
+      cnodes1.push({ id: 'S3',
+          label: "S3",
+          group: "pattern",
+          value: 10,});
+      cedges1.push({
+          from: 'S3',
+          to: 'S2',
+          color: RED,
+          width: 3.5,
+          label: "((v0,v1),(⊕(v0,v1),variantOf),φ3)",font: { align: "bottom" },
+          arrows: "to",
+          dashes: true,
+          length: 40,
+      });
+      draw1(1);
+
       alert("There is no explanation!")
+
   }
 
 
@@ -489,3 +596,13 @@ $("#e-radios").find('input[type=radio][name=bidi]').change(function () {
     }
 });
 
+$('#sparqlb').on('click', function () {
+
+
+    $("#queryanswer").find('tbody').append("<tr >\n" +
+        "                                        <td>v2</td>\n" +
+        "                                        <td>name:SARS-COV-2</td>\n" +
+        "                                        <td>realm:Ribobiria</td>\n" +
+        "                                    </tr>");
+
+});
