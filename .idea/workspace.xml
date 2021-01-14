@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1m0s0rNslnDIg6UIimc0YZHdMVl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/octopus" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/octopus" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="" />
+      <created>1608641623121</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608641623121</updated>
+      <workItem from="1608641628213" duration="15049000" />
+      <workItem from="1608687237393" duration="23000000" />
+      <workItem from="1609811238134" duration="43220000" />
+      <workItem from="1610246871817" duration="500000" />
+      <workItem from="1610279471396" duration="59794000" />
+      <workItem from="1610538923046" duration="1227000" />
+      <workItem from="1610566991331" duration="21665000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="447" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609841302776">
+      <screen x="0" y="23" width="1680" height="980" />
+    </state>
+    <state x="447" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1680.23.1680.1027/0.23.1680.980@0.23.1680.980" timestamp="1609841302776" />
+    <state x="1838" y="94" width="1245" height="963" key="dock-window-1" timestamp="1610451711314">
+      <screen x="1680" y="23" width="1680" height="1027" />
+    </state>
+    <state x="1838" y="94" width="1245" height="963" key="dock-window-1/1680.23.1680.1027/0.23.1680.983@0.23.1680.983" timestamp="1610451711314" />
+    <state x="553" y="238" width="670" height="679" key="search.everywhere.popup" timestamp="1610415315282">
+      <screen x="0" y="23" width="1680" height="983" />
+    </state>
+    <state x="553" y="237" width="670" height="676" key="search.everywhere.popup/1680.23.1680.1027/0.23.1680.979@0.23.1680.979" timestamp="1609818674003" />
+    <state x="553" y="238" width="670" height="679" key="search.everywhere.popup/1680.23.1680.1027/0.23.1680.983@0.23.1680.983" timestamp="1610415315282" />
+  </component>
+</project>
