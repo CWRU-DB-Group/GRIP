@@ -236,6 +236,7 @@
                                                 <option class="center">testedBy</option>
                                                 <option class="center">causedBy</option>
                                                 <option class="center">possess</option>
+                                                <option class="center">sensitiveTo</option>
 
                                             </select>
                                         </div>
@@ -385,19 +386,19 @@
 
                                 </div>
 
-                                <div class="col-lg-4 ">
+                                <div class="col-lg-6 ">
 
-                                    <h5>
+                                    <h5 i="lexp">
                                         Explanation
 
                                     </h5>
-                                    <div id="row">
-                                        <div id="ntable">
-                                            <table class="table table-striped">
+                                    <div>
+                                        <div class ="center e-forward" id="ntable">
+                                            <table class="table table-striped table-bordered"id="">
                                                 <thead class="thead-dark">
-                                                <tr>
+                                                <tr class="center">
                                                     <th scope="col"></th>
-                                                    <th scope="col">Match</th>
+                                                    <th class="center" scope="col">Match</th>
                                                     <th scope="col">Operator</th>
                                                     <th scope="col">Constraint</th>
 
@@ -416,60 +417,88 @@
                                                     <td>merge(v1,v2)</td>
                                                     <td>φ2</td>
                                                 </tr>
+                                                <tr class="e-backward">
+                                                    <th scope="row">S3</th>
+                                                    <td>(v0,v1)</td>
+                                                    <td>add(v1,v2),variantOf</td>
+                                                    <td>φ3</td>
+                                                </tr>
 
                                                 </tbody>
                                             </table>
 
                                         </div>
                                     </div>
-                                    <div class="row" id="st">
-                                        <div class="col-lg-4 ">
-
-                                            <h5>
-                                                Matches
-
-                                            </h5>
-                                            <div class="row">
-                                                <div class ="center" id="mtable">
-                                                    <table class="table table-striped">
-                                                        <thead class="thead-dark">
-                                                        <tr>
-                                                            <th scope="col">Constraint</th>
-                                                            <th scope="col">Match</th>
-
-                                                        </tr>
-                                                        </thead>
-
-                                                        <tbody id="mtabletbody">
-                                                        <tr class="e-forward only">
-                                                            <th scope="row">φ1</th>
-                                                            <td>...</td>
-
-
-                                                        </tr>
-
-                                                        <tr class="e-forward">
-                                                            <th scope="row">φ2</th>
-                                                            <td>...</td>
-
-
-                                                        </tr>
 
 
 
+                                        <h5 id="lexp" >
+                                           Match
 
-                                                        </tbody>
-                                                    </table>
+                                        </h5>
+                                        <div class ="center e-forward">
+                                            <table class="table table-striped table-bordered" id="mttable">
+                                                <thead class="thead-dark" style="width: 100%">
+                                                <tr class="center">
 
-                                                </div>
+                                                    <th class="center" scope="col">Constraint</th>
+                                                    <th scope="col">Match</th>
+                                                    <th scope="col">Attributes</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="e-forward only">
+
+                                                    <th class="" scope="row">φ1</th>
+                                                    <td class=""><div id="m1"></div></td>
+                                                    <td class="">
+                                                        <ul>
+                                                            <li>v2.name=SARS-COV-2</li>
+                                                            <li>v2.realm=Riboriria</li>
+                                                            <li>v3.name=rt-PCR</li>
+                                                        </ul>
+                                                    </td>
+
+
+                                                </tr>
+
+                                                <tr class="e-forward">
+
+                                                    <th class="" scope="row" >φ2</th>
+                                                    <td><div id="m2"></div></td>
+                                                    <td class="">
+                                                        <ul>
+                                                            <li>v2.realm=Riboriria</li>
+                                                            <li>v2.name=SARS-COV-2</li>
+                                                            <li>v1.name=COVID Virus</li>
+                                                        </ul>
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr class="e-backward">
+
+                                                    <th class="" scope="row" >φ3</th>
+                                                    <td><div id="m3"></div></td>
+                                                    <td class="">
+                                                        <ul>
+                                                            <li>v0.name=501.vz</li>
+                                                            <li>v0.realm=Riboriria</li>
+                                                            <li>v1.name=COVID Virus</li>
+                                                        </ul>
+                                                    </td>
+
+                                                </tr>
 
 
 
-                                            </div>
-
+                                                </tbody>
+                                            </table>
 
                                         </div>
-                                    </div>
+
+
                                     <div class="form-group" id="e-radios">
                                         <div class="row col-md-10">
                                             <div class="radio-custom radio-primary col-md-6">

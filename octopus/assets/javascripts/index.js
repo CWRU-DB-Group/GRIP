@@ -6,6 +6,9 @@ var pnodeslist = [];
 var pedgeslist = [];
 var explore = null;
 
+
+
+
 var LENGTH_MAIN = 350,
     LENGTH_SERVER = 150,
     LENGTH_SUB = 50,
@@ -480,6 +483,10 @@ $('#show-r').click(function () {
    $(".e-forward").show();
    $('img').show();
 
+   draw2(mnodes,medges,1);
+   draw2(mnodes1,medges1,2);
+
+
 });
 
 $('#bright').click(function () {
@@ -520,6 +527,7 @@ $(document).ready(function (){
         $("#matt").hide();
         $("#mlink").show();
         $(".e-forward").hide();
+        $(".e-backward").hide();
         $('img').hide();
 
 });
@@ -531,18 +539,7 @@ $
 
 
   if (explore == 'f') {
-      $('#ntabletbody').append("<tr class=\"e-backward\">\n" +
-          "                                                    <th scope=\"row\">S4</th>\n" +
-          "                                                    <td>(v0,v1)</td>\n" +
-          "                                                    <td>add(v0,v1), variantOf</td>\n" +
-          "                                                    <td>φ3</td>\n" +
-          "                                                </tr>");
-      $('#mtabletbody').append(" <tr class=\"e-backward\">\n" +
-          "                                                            <th scope=\"row\">φ3</th>\n" +
-          "                                                            <td>...</td>\n" +
-          "\n" +
-          "\n" +
-          "                                                        </tr>");
+
       cnodes1.push({ id: 'S4',
           label: "S4",
           group: "pattern",
@@ -558,6 +555,8 @@ $
 
       });
       draw1(1);
+      $(".e-backward").show();
+      draw2(mnodes2,medges2,3);
 
 
   } else {
@@ -602,7 +601,161 @@ $('#sparqlb').on('click', function () {
     $("#queryanswer").find('tbody').append("<tr >\n" +
         "                                        <td>v2</td>\n" +
         "                                        <td>name:SARS-COV-2</td>\n" +
-        "                                        <td>realm:Ribobiria</td>\n" +
+        "                                        <td>realm:Riboriria</td>\n" +
         "                                    </tr>");
 
 });
+
+
+var mnodes=[];
+var medges=[];
+
+mnodes.push({
+    id: 'v2',
+    label: 'v2' + "\n" +"virus",
+    group: "pattern",
+    value: 10,
+});
+
+mnodes.push({
+    id: 'v3',
+    label: 'v3' + '\n'+ "testing_method",
+    group: "pattern",
+    value: 10,
+});
+mnodes.push({
+    id: 'v4',
+    label: 'v4' + '\n' + "virus",
+    group: "pattern",
+    value: 10,
+});
+
+medges.push({
+    from: 'v2',
+    to: 'v3',
+    color: RED,
+    width: 1.5,
+    arrows: "to",
+    dashes: true,
+});
+
+medges.push({
+    from: 'v2',
+    to: 'v4',
+    color: GRAY,
+    width: 1.5,
+    arrows: "to",
+});
+
+var mnodes1=[];
+var medges1=[];
+
+var mnodes2=[];
+var medges2=[];
+
+mnodes1.push({
+    id: 'v1',
+    label: 'v1' + '\n'+ "virus",
+    group: "pattern",
+    value: 10,
+});
+mnodes1.push({
+    id: 'v2',
+    label: 'v2' + '\n' + "virus",
+    group: "pattern",
+    value: 10,
+});
+
+mnodes2.push({
+    id: 'v1',
+    label: 'v1' + '\n'+ "virus",
+    group: "pattern",
+    value: 10,
+});
+
+mnodes2.push({
+    id: 'v0',
+    label: 'v0' + '\n' + "virus",
+    group: "pattern",
+    value: 10,
+});
+
+mnodes2.push({
+    id: 'v5',
+    label: 'v5' + '\n' + "disease",
+    group: "pattern",
+    value: 10,
+});
+
+medges2.push({
+    from: 'v0',
+    to: 'v1',
+    color: RED,
+    width: 1.5,
+    arrows: "to",
+    dashes: true,
+});
+
+medges2.push({
+    from: 'v1',
+    to: 'v5',
+    color: GRAY,
+    width: 1.5,
+    arrows: "to",
+});
+
+medges2.push({
+    from: 'v0',
+    to: 'v5',
+    color: GRAY,
+    width: 1.5,
+    arrows: "to",
+});
+
+function draw2(nodes, edges,mid) {
+
+    var container = document.getElementById("m" + mid);
+    var data = {
+        nodes: nodes,
+        edges: edges,
+    };
+    var options = {
+        nodes: {
+            scaling: {
+                min: 4,
+                max: 6,
+            },
+            font: {
+                size: 20,
+            },
+        },
+        edges: {
+            color: BLACK,
+            smooth: true,
+            font: {
+                size: 6,
+            },
+            length: 10,
+            arrows: "to",
+        },
+
+        // physics: {
+        //     barnesHut: {gravitationalConstant: -30000},
+        //     stabilization: {iterations: 2500},
+        // },
+        groups: {
+
+            pattern: {
+                shape: "dot",
+                color: 	"#3c2aff", // blue
+            },
+            root: {
+                shape: "dot",
+                color: "#C5000B", // purple
+            },
+
+        },
+    };
+    var network = new vis.Network(container, data, options);
+
+}
