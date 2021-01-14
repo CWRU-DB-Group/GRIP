@@ -401,8 +401,8 @@ cedges0.push({
 
 
 cedges0.push({
-    from: 'S2',
-    to: 'S1',
+    from: 'S1',
+    to: 'S2',
     color: GRAY,
     width: 3.5,
     label: "((v2,v3),(⊕(v2,v),testedBy),φ2)",
@@ -523,12 +523,13 @@ $("#radios").find('input[type=radio][name=miss]').change(function () {
 
 $(document).ready(function (){
 
-       $("#query-answer").hide();
+        $("#query-answer").hide();
         $("#matt").hide();
         $("#mlink").show();
         $(".e-forward").hide();
         $(".e-backward").hide();
         $('img').hide();
+        $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
 
 });
 

@@ -4,7 +4,6 @@
     <list default="true" id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/octopus/assets/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/octopus/assets/javascripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/octopus/assets/stylesheets/theme-custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/octopus/assets/stylesheets/theme-custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/octopus/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/octopus/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +62,7 @@
       <workItem from="1610538923046" duration="1227000" />
       <workItem from="1610566991331" duration="26964000" />
       <workItem from="1610624178342" duration="21086000" />
-      <workItem from="1610646034780" duration="1869000" />
+      <workItem from="1610646034780" duration="2584000" />
     </task>
     <servers />
   </component>
