@@ -296,7 +296,7 @@ function appendRule (text) {
 
     $('#rule-dis').append("<div class=\"tab-pane\"" +
         "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
-        "                                        <div id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+        "                                        <div style = \"border-style: groove\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
         "\n" +
         "                                        </div>\n"  + "  <div id =\"literal" + ctid + "\"></div>"+" <label class =\"center\">Constraint" + " " + ctid + "</label>" +
         "                                    </div>\n");
