@@ -490,8 +490,6 @@ $('#show-r').click(function () {
        $(".e-forward").show();
        drawM();
        $('img').show();
-
-
    } else if(scenario == 'very-awesome') {
 
 
