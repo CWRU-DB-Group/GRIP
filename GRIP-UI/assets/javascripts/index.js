@@ -461,22 +461,6 @@ cedges1.push({
 
 
 
-// cnodes1.push({ id: 'S3',
-//     label: "S3",
-//     group: "pattern",
-//     value: 10,
-//     color: "#2B7CE9",
-// });
-
-// cedges1.push({
-//     from: 'Sr',
-//     to: 'S3',
-//     color: "#2B7CE9",
-//     width: 3.5,
-//     arrows: "to",
-//     length: 40,
-// });
-
 
 
 
