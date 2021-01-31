@@ -77,9 +77,10 @@
                             <div id="rule-dis">
 
                             </div>
-                            <textarea class="form-control center" rows="3" placeholder="Input your rule"
-                                      id="rule-text" ></textarea>
+
                         </div>
+                        <textarea class="form-control center" rows="3" placeholder="Input your rule"
+                                  id="rule-text" style="margin-top: 2px"></textarea>
                         <footer class="panel-footer center">
                             <button class="btn btn-primary btn-xs" id="load-rule">Load Constraints</button>
                             <button class="btn btn-primary btn-xs" id="add-rule">Add Constraint</button>
@@ -389,34 +390,62 @@
                                     </h5>
                                     <div>
                                         <div class="center e-forward" id="ntable">
-                                            <table class="table table-striped table-bordered mttable1">
-                                                <thead class="thead-dark">
-                                                <tr class="center">
-                                                    <th scope="col"></th>
-                                                    <th class="center" scope="col">Match</th>
-                                                    <th scope="col">Operator</th>
-                                                    <th scope="col">Constraint</th>
+<!--                                            <table class="table table-striped table-bordered mttable1">-->
+<!--                                                <thead class="thead-dark">-->
+<!--                                                <tr class="center">-->
+<!--                                                    <th scope="col"></th>-->
+<!--                                                    <th class="center" scope="col">Match</th>-->
+<!--                                                    <th scope="col">Operator</th>-->
+<!--                                                    <th scope="col">Constraint</th>-->
+
+<!--                                                </tr>-->
+<!--                                                </thead>-->
+<!--                                                <tbody id="ntabletbody">-->
+<!--                                                <tr class="e-forward only">-->
+<!--                                                    <th scope="row">S1</th>-->
+<!--                                                    <td>(v2,v3)</td>-->
+<!--                                                    <td>add(v2,v3),testedBy</td>-->
+<!--                                                    <td>φ1</td>-->
+<!--                                                </tr>-->
+<!--                                                <tr class="e-forward">-->
+<!--                                                    <th scope="row">S2</th>-->
+<!--                                                    <td>(v1,v2)</td>-->
+<!--                                                    <td>merge(v1,v2)</td>-->
+<!--                                                    <td>φ2</td>-->
+<!--                                                </tr>-->
+<!--                                                <tr class="e-backward">-->
+<!--                                                    <th scope="row">S3</th>-->
+<!--                                                    <td>(v0,v1)</td>-->
+<!--                                                    <td>add(v1,v2),variantOf</td>-->
+<!--                                                    <td>φ3</td>-->
+<!--                                                </tr>-->
+
+<!--                                                </tbody>-->
+<!--                                            </table>-->
+
+
+                                            <table class="table table-bordered table-striped mttable2">
+                                                <thead>
+                                                     <th></th>
+                                                    <th colspan="2">Answer to "why"</th>
+                                                    <th>Answer to "how"</th>
 
                                                 </tr>
                                                 </thead>
-                                                <tbody id="ntabletbody">
-                                                <tr class="e-forward only">
-                                                    <th scope="row">S1</th>
+                                                <tbody id = "mtablebody">
+                                                <tr>
+                                                    <th >S1</th>
                                                     <td>(v2,v3)</td>
-                                                    <td>add(v2,v3),testedBy</td>
                                                     <td>φ1</td>
+                                                    <td>insert((v2,v3),testedBy)</td>
+
                                                 </tr>
-                                                <tr class="e-forward">
-                                                    <th scope="row">S2</th>
+                                                <tr>
+                                                    <th >S2</th>
                                                     <td>(v1,v2)</td>
-                                                    <td>merge(v1,v2)</td>
                                                     <td>φ2</td>
-                                                </tr>
-                                                <tr class="e-backward">
-                                                    <th scope="row">S3</th>
-                                                    <td>(v0,v1)</td>
-                                                    <td>add(v1,v2),variantOf</td>
-                                                    <td>φ3</td>
+                                                    <td>merge(v1,v2)</td>
+
                                                 </tr>
 
                                                 </tbody>
@@ -432,69 +461,83 @@
                                             Match
 
                                         </h5>
-                                        <table class="table table-striped table-bordered mttable">
-                                            <thead class="thead-dark" >
-                                            <tr class="center">
 
-                                                <th class="center" scope="col">Constraint</th>
-                                                <th scope="col">Match</th>
-                                                <th scope="col">Attributes</th>
+                                        <table class="table table-bordered table-striped">
 
-                                            </tr>
-                                            </thead>
                                             <tbody>
-                                            <tr class="e-forward only">
+                                            <tr>
 
-                                                <th class="" scope="row">φ1</th>
-                                                <td class="">
-                                                    <div id="m1"></div>
-                                                </td>
-                                                <td class="">
-                                                    <ul>
-                                                        <li>v2.name=SARS-COV-2</li>
-                                                        <li>v2.realm=Riboriria</li>
-                                                        <li>v3.name=rt-PCR</li>
-                                                    </ul>
-                                                </td>
+                                                <td><div id= "forward1"></div></td>
+                                                <td><div id= "forward2"></div></td>
 
 
                                             </tr>
-
-                                            <tr class="e-forward">
-
-                                                <th class="" scope="row">φ2</th>
-                                                <td>
-                                                    <div id="m2"></div>
-                                                </td>
-                                                <td class="">
-                                                    <ul>
-                                                        <li>v2.realm=Riboriria</li>
-                                                        <li>v2.name=SARS-COV-2</li>
-                                                        <li>v1.name=COVID Virus</li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-
-                                            <tr class="e-backward">
-
-                                                <th class="" scope="row">φ3</th>
-                                                <td>
-                                                    <div id="m3"></div>
-                                                </td>
-                                                <td class="">
-                                                    <ul>
-                                                        <li>v0.name=501.vz</li>
-                                                        <li>v0.realm=Riboriria</li>
-                                                        <li>v1.name=COVID Virus</li>
-                                                    </ul>
-                                                </td>
-
-                                            </tr>
-
 
                                             </tbody>
                                         </table>
+<!--                                        <table class="table table-striped table-bordered mttable">-->
+<!--                                            <thead class="thead-dark" >-->
+<!--                                            <tr class="center">-->
+
+<!--                                                <th class="center" scope="col">Constraint</th>-->
+<!--                                                <th scope="col">Match</th>-->
+<!--                                                <th scope="col">Attributes</th>-->
+
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody>-->
+<!--                                            <tr class="e-forward only">-->
+
+<!--                                                <th class="" scope="row">φ1</th>-->
+<!--                                                <td class="">-->
+<!--                                                    <div id="m1"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v2.name=SARS-COV-2</li>-->
+<!--                                                        <li>v2.realm=Riboriria</li>-->
+<!--                                                        <li>v3.name=rt-PCR</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+
+<!--                                            </tr>-->
+
+<!--                                            <tr class="e-forward">-->
+
+<!--                                                <th class="" scope="row">φ2</th>-->
+<!--                                                <td>-->
+<!--                                                    <div id="m2"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v2.realm=Riboriria</li>-->
+<!--                                                        <li>v2.name=SARS-COV-2</li>-->
+<!--                                                        <li>v1.name=COVID Virus</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+<!--                                            </tr>-->
+
+<!--                                            <tr class="e-backward">-->
+
+<!--                                                <th class="" scope="row">φ3</th>-->
+<!--                                                <td>-->
+<!--                                                    <div id="m3"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v0.name=501.vz</li>-->
+<!--                                                        <li>v0.realm=Riboriria</li>-->
+<!--                                                        <li>v1.name=COVID Virus</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+<!--                                            </tr>-->
+
+
+<!--                                            </tbody>-->
+<!--                                        </table>-->
 
                                     </div>
 

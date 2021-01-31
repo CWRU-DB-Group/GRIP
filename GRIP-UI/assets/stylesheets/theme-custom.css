@@ -133,7 +133,7 @@ input:checked + .slider:before {
 .tp{ padding-left: 50px}
 
 #3i{margin-left: -100px}
-#rule-dis { height: 170px; width :100%; overflow: auto;}
+#rule-dis { height: 220px; width :100%; overflow: auto;}
 
 .panel-subtitle {
     padding-bottom: 10px;
@@ -171,6 +171,15 @@ label{font-size: 10px;}
     height: 100px;
     width: 500px;
 }
+
+.mttable2{
+
+    display : block;
+    overflow: auto;
+    height: 100px;
+    width: 300px;
+}
+
 #mtable{width: 400px}
 #ntable{margin-left: -10px;}
 
@@ -182,3 +191,6 @@ label{font-size: 10px;}
 .control-label {font-size: 16px;}
 
 #expp-panel {width: 69%;}
+
+#forward1 {height: 100px; width: 150px;}
+#forward2 {height: 100px; width: 150px;}

@@ -1,7 +1,7 @@
 
 var tid = 1;
 var ptid = 0;
-var scenario = 'refine';
+var scenario = null;
 var pnodeslist = [];
 var pedgeslist = [];
 var explore = null;
@@ -31,54 +31,36 @@ function draw1(cptid) {
     var options = {
         nodes: {
             scaling: {
-                min: 8,
-                max: 8,
+                min: 10,
             },
             font: {
-                size: 20,
-                align: "left",
+                size: 15,
             },
-            color: GRAY,
         },
         edges: {
-            color: GRAY,
-            smooth: false,
-            font: {
-                size: 20,
-            },
-            length: 8,
-        },
 
-        // physics: {
-        //     barnesHut: {gravitationalConstant: -30000},
-        //     stabilization: {iterations: 2500},
-        // },
-        groups: {
-
-            pattern: {
-                shape: "dot",
-                color: "#2B7CE9", // blue
-            },
-            root: {
-                shape: "dot",
-                color: "#C5000B", // purple
-            },
-
+            length: 25,
+            arrows: "to",
         },
         layout: {
             hierarchical: {
                 direction: "UD",
             },
         },
+
+        groups: {
+
+            pattern: {
+                shape: "dot",
+
+            },
+
+
+        },
     };
     var network = new vis.Network(container, data, options);
-    network.on("click", function (params) {
-
-        if (params.nodes[0] != null) {
-            alert('You seleted node ' + params.nodes[0]);
-        }
-
-
+    network.on("stabilizationIterationsDone", function () {
+        network.setOptions( { physics: false } );
     });
 
 }
@@ -110,7 +92,6 @@ function draw(nodes, edges, ctid, literals) {
             length: 25,
             arrows: {
                 to: {
-                    enabled: false,
 
                     scaleFactor: 0.5,
 
@@ -118,6 +99,7 @@ function draw(nodes, edges, ctid, literals) {
                 },
             },
         },
+
 
         // physics: {
         //     barnesHut: {gravitationalConstant: -30000},
@@ -296,7 +278,7 @@ function appendRule (text) {
 
     $('#rule-dis').append("<div class=\"tab-pane\"" +
         "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
-        "                                        <div style = \"border-style: groove\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+        "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
         "\n" +
         "                                        </div>\n"  + "  <div id =\"literal" + ctid + "\"></div>"+" <label class =\"center\">Constraint" + " " + ctid + "</label>" +
         "                                    </div>\n");
@@ -332,12 +314,18 @@ var cedges0 = [];
 pnodeslist[0] = cnodes0;
 pedgeslist[0] = cedges0;
 
+pnodeslist[1] = cnodes1;
+pedgeslist[1] = cedges1;
+pnodeslist[2] = cnodes2;
+pedgeslist[2] = cedges2;
+
 
 var cnodes1 = [];
 var cedges1 = [];
 
 var cnodes2 = [];
 var cedges2 = [];
+
 cnodes2.push({
     id: 'Sr',
     label: "Sr",
@@ -356,18 +344,16 @@ cedges2.push({
     to: 'S1',
     color: GRAY,
     width: 3.5,
-    label: "((v2,v3),(⊕(v2,v3),testedBy),φ1)",
+    label: "((v2,v3),(add(v2,v3),testedBy),φ1)",
     arrows: "to",
 });
 
-pnodeslist[1] = cnodes1;
-pedgeslist[1] = cedges1;
-pnodeslist[2] = cnodes2;
-pedgeslist[2] = cedges2;
+
 
 cnodes0.push({
     id: 'Sr',
     label: "Sr",
+    color: RED,
     group: "pattern",
     value: 10,
 });
@@ -375,11 +361,13 @@ cnodes0.push({
     id: 'S1',
     label: "S1",
     group: "pattern",
+    color: RED,
     value: 10,
 });
 
 cnodes0.push({ id: 'S2',
     label: "S2",
+    color: RED,
     group: "pattern",
     value: 10,});
 
@@ -390,32 +378,21 @@ cnodes0.push({ id: 'S2',
 cedges0.push({
     from: 'Sr',
     to: 'S1',
-    color: GRAY,
+    color: RED,
     width: 3.5,
-    label: "((v2,v3),(⊕(v2,v3),testedBy),φ1)",
     arrows: "to",
+    length: 25,
 });
-
-
-
 
 
 cedges0.push({
     from: 'S1',
     to: 'S2',
-    color: GRAY,
+    color: RED,
     width: 3.5,
-    label: "((v2,v3),(⊕(v2,v),testedBy),φ2)",
     arrows: "to",
+    length: 25,
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -425,6 +402,7 @@ cnodes1.push({
     label: "Sr",
     group: "pattern",
     value: 10,
+    color: RED,
 });
 
 
@@ -433,36 +411,71 @@ cnodes1.push({
     label: "S1",
     group: "pattern",
     value: 10,
+    color: RED,
+
 });
 
 cnodes1.push({ id: 'S2',
     label: "S2",
     group: "pattern",
-    value: 10,});
+    value: 10,
+    color: RED,
+});
 
-
-
+// cnodes1.push({ id: 'S4',
+//     label: "S4",
+//     group: "pattern",
+//     value: 10,
+//     color: "#2B7CE9",
+// });
 
 
 cedges1.push({
     from: 'Sr',
     to: 'S1',
-    color: GRAY,
+    color: RED,
     width: 3.5,
-    label: "((v2,v3),(⊕(v2,v3),testedBy),φ1)",
     arrows: "to",
 });
 
 cedges1.push({
     from: 'S1',
     to: 'S2',
-    color: GRAY,
+    color: RED,
     width: 3.5,
-    label: "((v1,v2),O(v1,v2),φ2)",
     arrows: "to",
 });
 
+// cedges1.push({
+//
+//     from: 'S2',
+//     to: 'S4',
+//     color: "#2B7CE9",
+//     width: 3.5,
+//     arrows: "to",
+//     length:25,
+//
+// });
 
+
+
+
+
+// cnodes1.push({ id: 'S3',
+//     label: "S3",
+//     group: "pattern",
+//     value: 10,
+//     color: "#2B7CE9",
+// });
+
+// cedges1.push({
+//     from: 'Sr',
+//     to: 'S3',
+//     color: "#2B7CE9",
+//     width: 3.5,
+//     arrows: "to",
+//     length: 40,
+// });
 
 
 
@@ -473,28 +486,31 @@ $('#show-r').click(function () {
 
 
    if (scenario == 'awesome') {
-       draw1(2);
-   } else if(scenario == 'refine') {
        draw1(1);
+       $(".e-forward").show();
+       drawM();
+       $('img').show();
+
+
+   } else if(scenario == 'very-awesome') {
+
+
+   } else if(scenario == 'very-awesome') {
+
+
    } else {
+
        draw1(0);
+       $(".e-forward").show();
+       drawM();
+       $('img').show();
+
+
    }
 
-   $(".e-forward").show();
-   $('img').show();
-
-   draw2(mnodes,medges,1);
-   draw2(mnodes1,medges1,2);
-
-
 });
 
-$('#bright').click(function () {
 
-    ptid = ptid + 1
-    draw1(ptid);
-
-});
 
 
 $("#radios").find('input[type=radio][name=miss]').change(function () {
@@ -537,45 +553,52 @@ $(document).ready(function (){
 $
 
 ("#b-explore").click(function ( ){
-
-
+    alert("dddddd");
   if (explore == 'f') {
 
-      cnodes1.push({ id: 'S4',
+      cnodes0.push({ id: 'S4',
           label: "S4",
-          group: "pattern",
-          value: 10,});
-      cedges1.push({
+          color: "#2B7CE9",
+          value: 10,
+      });
+
+      cedges0.push({
+
           from: 'S2',
           to: 'S4',
-          color: GRAY,
+          color: "#2B7CE9",
           width: 3.5,
-          label: "((v2,v3),(⊕(v2,v3),testedBy),φ4)",
           arrows: "to",
           length:25,
 
       });
-      draw1(1);
+
+      draw1(0);
       $(".e-backward").show();
-      draw2(mnodes2,medges2,3);
+      $('#mtablebody').append(' <tr>\n' +
+          '                                                    <th >S3</th>\n' +
+          '                                                    <td>(v0,v1)</td>\n' +
+          '                                                    <td>φ3</td>\n' +
+          '                                                    <td>add(v1,v2),variantOf</td>\n' +
+          '\n' +
+          '                                                </tr>');
 
 
   } else {
-      cnodes1.push({ id: 'S3',
+      cnodes0.push({ id: 'S3',
           label: "S3",
-          group: "pattern",
+          color: "#2B7CE9",
           value: 10,});
-      cedges1.push({
-          from: 'S3',
-          to: 'S2',
-          color: RED,
+
+      cedges0.push({
+          from: 'Sr',
+          to: 'S3',
+          color: "#2B7CE9",
           width: 3.5,
-          label: "((v0,v1),(⊕(v0,v1),variantOf),φ3)",font: { align: "bottom" },
           arrows: "to",
-          dashes: true,
           length: 40,
       });
-      draw1(1);
+      draw1(0);
 
       alert("There is no explanation!")
 
@@ -713,18 +736,105 @@ medges2.push({
     arrows: "to",
 });
 
-function draw2(nodes, edges,mid) {
 
-    var container = document.getElementById("m" + mid);
-    var data = {
-        nodes: nodes,
-        edges: edges,
+
+// ----------
+
+function drawM () {
+    var fm1node = [];
+    var fm1edge = [];
+
+    var fm2node = [];
+    var fm2edge = [];
+
+    fm1node.push({
+        id: 'v1',
+        label: 'v1' + '\n' + "COVID-19 virus",
+        group: "pattern",
+        value: 10,
+    });
+    fm1node.push({
+        id: 'v2',
+        label: "COVID-19",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm1node.push({
+        id: 'v3',
+        label: "rt-CPR",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm1edge.push({
+        from: 'v1',
+        to: 'v2',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+
+    });
+
+    fm1edge.push({
+        from: 'v1',
+        to: 'v3',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+    });
+
+    fm2node.push({
+        id: 'v1',
+        label: 'v2' + '\n' + "SARS-COV-2",
+        group: "pattern",
+        value: 10,
+    });
+    fm2node.push({
+        id: 'v2',
+        label: "COVID-19",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm2node.push({
+        id: 'v3',
+        label: "rt-CPR",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm2edge.push({
+        from: 'v1',
+        to: 'v2',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+
+    });
+
+    fm2edge.push({
+        from: 'v1',
+        to: 'v3',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+    });
+
+    var container1 = document.getElementById("forward1");
+    var container2 = document.getElementById("forward2");
+    var data1 = {
+        nodes: fm1node,
+        edges: fm1edge,
+    };
+    var data2 = {
+        nodes: fm2node,
+        edges: fm2edge,
     };
     var options = {
         nodes: {
             scaling: {
-                min: 4,
-                max: 6,
+                min: 10,
             },
             font: {
                 size: 20,
@@ -732,31 +842,31 @@ function draw2(nodes, edges,mid) {
         },
         edges: {
             color: BLACK,
-            smooth: true,
+            smooth: false,
             font: {
                 size: 6,
             },
-            length: 10,
+            length: 25,
             arrows: "to",
         },
 
-        // physics: {
-        //     barnesHut: {gravitationalConstant: -30000},
-        //     stabilization: {iterations: 2500},
-        // },
         groups: {
 
             pattern: {
                 shape: "dot",
-                color: 	"#3c2aff", // blue
+
             },
-            root: {
-                shape: "dot",
-                color: "#C5000B", // purple
-            },
+
 
         },
     };
-    var network = new vis.Network(container, data, options);
+    var network1 = new vis.Network(container1, data1, options);
+    var network2 = new vis.Network(container2, data2, options);
+    network1.setOptions({
+        physics: {enabled:false}
+    });
+    network2.setOptions({
+        physics: {enabled:false}
+    });
 
 }
