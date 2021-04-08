@@ -601,16 +601,16 @@ cedges1.push({
     arrows: "to",
 });
 
-// cedges1.push({
-//
-//     from: 'S2',
-//     to: 'S4',
-//     color: "#2B7CE9",
-//     width: 3.5,
-//     arrows: "to",
-//     length:25,
-//
-// });
+cedges1.push({
+
+    from: 'S2',
+    to: 'S4',
+    color: "#2B7CE9",
+    width: 3.5,
+    arrows: "to",
+    length:25,
+
+});
 
 
 $('#show-r').click(function () {
@@ -620,19 +620,18 @@ $('#show-r').click(function () {
         draw1(1);
         $(".e-forward").show();
         drawM();
-        $('img').show();
-    } else if (scenario == 'very-awesome') {
-
 
     } else if (scenario == 'very-awesome') {
 
+        draw1(0);
+        $(".e-forward").show();
+        drawM()
 
     } else {
 
         draw1(0);
         $(".e-forward").show();
         drawM();
-        $('img').show();
 
 
     }
@@ -646,6 +645,7 @@ $("#radios").find('input[type=radio][name=miss]').change(function () {
         $("#manswer").hide();
         $("#matt").hide();
         $("#mlink").hide();
+        scenario = 'refine';
 
     } else if (this.value == 'awesome') {
         $("#manswer").hide();
@@ -717,10 +717,11 @@ $
         });
 
         draw1(0);
+
         $(".e-backward").show();
 
         $('#mtablebody').append('  <tr>\n' +
-            '        <th >S3</th>\n' +
+            '        <th >S4</th>\n' +
             '        <td>(v0,v1)</td>\n' +
             '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">φ3</td>\n' +
             '            <td>merge(v0,v1)</td>\n' +
@@ -745,6 +746,14 @@ $
             length: 40,
         });
         draw1(0);
+
+        $('#mtablebody').append('  <tr>\n' +
+            '        <th >S3</th>\n' +
+            '        <td>(v0,v1)</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">φ4</td>\n' +
+            '            <td>merge(v0,v1)</td>\n' +
+            '\n' +
+            '            </tr>');
 
         alert("There is no explanation!")
 
