@@ -1,4 +1,3 @@
-
 var tid = 1;
 var ptid = 0;
 var scenario = null;
@@ -27,59 +26,59 @@ $(document).on("click", "#answer", function (e) {
 
     alert("Showing data graph.");
     nodes.push({
-        id:1 ,
+        id: 1,
         label: "COVID-19",
         group: "error",
         value: 5,
         font: {
             size: 20,
         },
-        title : "Type:Disease"+"\n"+"Name:COVID-19",
+        title: "Type:Disease" + "\n" + "Name:COVID-19",
 
     });
 
     nodes.push({
-        id:2 ,
+        id: 2,
         label: "COVID-Virus",
         group: "correct",
         value: 5,
         font: {
             size: 20,
         },
-        title : "Type:Virus"+"\n"+"Name:COVID-Virus",
+        title: "Type:Virus" + "\n" + "Name:COVID-Virus",
 
     });
     nodes.push({
-        id:3 ,
+        id: 3,
         label: "SARS-COV-2",
         group: "correct",
         value: 5,
         font: {
             size: 20,
         },
-        title : "Type:Virus"+"\n"+"Name:SARS-COV-2"+"\n" +"realm:Riboviria",
+        title: "Type:Virus" + "\n" + "Name:SARS-COV-2" + "\n" + "realm:Riboviria",
 
     });
     nodes.push({
-        id:4 ,
+        id: 4,
         label: "rt-PRC",
         group: "correct",
         value: 5,
         font: {
             size: 20,
         },
-        title : "Type:Testing_Method"+"\n"+"Name:rt-PRC",
+        title: "Type:Testing_Method" + "\n" + "Name:rt-PRC",
 
     });
     nodes.push({
-        id:5 ,
+        id: 5,
         label: "RNA",
         group: "correct",
         value: 5,
         font: {
             size: 20,
         },
-        title : "Type:RNA"+"\n"+"Name:SARS-COV-2 RNA",
+        title: "Type:RNA" + "\n" + "Name:SARS-COV-2 RNA",
 
     });
 
@@ -88,33 +87,38 @@ $(document).on("click", "#answer", function (e) {
         to: 1,
         color: RED,
         width: 1.5,
-        arrows: "to",});
+        arrows: "to",
+    });
 
     edges.push({
         from: 3,
         to: 1,
         color: RED,
         width: 1.5,
-        arrows: "to",});
+        arrows: "to",
+    });
     edges.push({
         from: 3,
         to: 5,
         color: GRAY,
         width: 1.5,
-        arrows: "to",});
+        arrows: "to",
+    });
     edges.push({
         from: 2,
         to: 4,
         color: GRAY,
         width: 1.5,
-        arrows: "to",});
+        arrows: "to",
+    });
 
     edges.push({
         from: 5,
         to: 4,
         color: GRAY,
         width: 1.5,
-        arrows: "to",});
+        arrows: "to",
+    });
 
     edges.push({
         from: 3,
@@ -122,14 +126,15 @@ $(document).on("click", "#answer", function (e) {
         color: ORANGE,
         width: 1.5,
         arrows: "to",
-        dashes: true});
+        dashes: true
+    });
 
 
     draw2();
     e.stopImmediatePropagation();
 });
-function draw2() {
 
+function draw2() {
 
 
     // create a network
@@ -141,7 +146,7 @@ function draw2() {
     };
     var options = {
 
-        interaction: { hover: true },
+        interaction: {hover: true},
 
         nodes: {
             scaling: {
@@ -176,12 +181,7 @@ function draw2() {
     });
 
 
-
-
-
 }
-
-
 
 
 function draw1(cptid) {
@@ -223,16 +223,13 @@ function draw1(cptid) {
     };
     var network = new vis.Network(container, data, options);
     network.on("stabilizationIterationsDone", function () {
-        network.setOptions( { physics: false } );
+        network.setOptions({physics: false});
     });
 
 }
 
 
 function draw(nodes, edges, ctid, literals) {
-
-
-
 
 
     var container = document.getElementById("mynetwork" + ctid);
@@ -287,7 +284,7 @@ function draw(nodes, edges, ctid, literals) {
     };
     var network = new vis.Network(container, data, options);
 
-    $("#literal"+ctid).append(literals);
+    $("#literal" + ctid).append(literals);
     // network.on("click", function (params) {
     //
     //
@@ -296,6 +293,7 @@ function draw(nodes, edges, ctid, literals) {
     // });
 
 }
+
 $("#load-rule").click(function () {
 
 
@@ -346,7 +344,7 @@ $("#load-rule").click(function () {
 
 });
 
-function appendRule (text) {
+function appendRule(text) {
 
     var ctid = tid;
     var literal = false;
@@ -360,13 +358,11 @@ function appendRule (text) {
 
     for (var i = 0; i < lines.length; i++) {
 
-        if(literal) {
+        if (literal) {
             literals = lines[i] + '\n';
         }
 
         var line = lines[i].split(" ");
-
-
 
 
         if (i == 0 && line[0] == 'k') {
@@ -439,7 +435,6 @@ function appendRule (text) {
         }
 
 
-
     }
 
 
@@ -447,15 +442,14 @@ function appendRule (text) {
         "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
         "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
         "\n" +
-        "                                        </div>\n"  + "  <div id =\"literal" + ctid + "\"></div>"+" <label class =\"center\">Constraint" + " " + ctid + "</label>" +
+        "                                        </div>\n" + "  <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">Constraint" + " " + ctid + "</label>" +
         "                                    </div>\n");
 
 
-    draw(nodes, edges, ctid ,literals);
+    draw(nodes, edges, ctid, literals);
 
 
 }
-
 
 
 $("#add-rule").click(function () {
@@ -470,9 +464,6 @@ $('#SPARQL').val("SELECT ?virus\n" +
     "?disease rdfs:name “COVID-19”\n" +
     "?virus rdfs:realm “Ribobiria”\n" +
     "}");
-
-
-
 
 
 var cnodes0 = [];
@@ -516,7 +507,6 @@ cedges2.push({
 });
 
 
-
 cnodes0.push({
     id: 'Sr',
     label: "Sr",
@@ -532,14 +522,13 @@ cnodes0.push({
     value: 10,
 });
 
-cnodes0.push({ id: 'S2',
+cnodes0.push({
+    id: 'S2',
     label: "S2",
     color: RED,
     group: "pattern",
-    value: 10,});
-
-
-
+    value: 10,
+});
 
 
 cedges0.push({
@@ -562,8 +551,6 @@ cedges0.push({
 });
 
 
-
-
 cnodes1.push({
     id: 'Sr',
     label: "Sr",
@@ -582,7 +569,8 @@ cnodes1.push({
 
 });
 
-cnodes1.push({ id: 'S2',
+cnodes1.push({
+    id: 'S2',
     label: "S2",
     group: "pattern",
     value: 10,
@@ -625,41 +613,36 @@ cedges1.push({
 // });
 
 
-
-
-
 $('#show-r').click(function () {
 
 
-   if (scenario == 'awesome') {
-       draw1(1);
-       $(".e-forward").show();
-       drawM();
-       $('img').show();
-   } else if(scenario == 'very-awesome') {
+    if (scenario == 'awesome') {
+        draw1(1);
+        $(".e-forward").show();
+        drawM();
+        $('img').show();
+    } else if (scenario == 'very-awesome') {
 
 
-   } else if(scenario == 'very-awesome') {
+    } else if (scenario == 'very-awesome') {
 
 
-   } else {
+    } else {
 
-       draw1(0);
-       $(".e-forward").show();
-       drawM();
-       $('img').show();
+        draw1(0);
+        $(".e-forward").show();
+        drawM();
+        $('img').show();
 
 
-   }
+    }
 
 });
 
 
-
-
 $("#radios").find('input[type=radio][name=miss]').change(function () {
 
-    if(this.value == 'refine') {
+    if (this.value == 'refine') {
         $("#manswer").hide();
         $("#matt").hide();
         $("#mlink").hide();
@@ -687,76 +670,85 @@ $("#radios").find('input[type=radio][name=miss]').change(function () {
     }
 });
 
-$(document).ready(function (){
+$(document).ready(function () {
 
-        $("#query-answer").hide();
-        $("#matt").hide();
-        $("#mlink").show();
-        $(".e-forward").hide();
-        $(".e-backward").hide();
-        $('img').hide();
-        $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
-        document.querySelector('input[type=radio][value=refine]').checked = true;
-        $("#manswer").hide();
-        $("#matt").hide();
-        $("#mlink").hide();
+    $("#query-answer").hide();
+    $("#matt").hide();
+    $("#mlink").show();
+    $(".e-forward").hide();
+    $(".e-backward").hide();
+    $('img').hide();
+    $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
+    document.querySelector('input[type=radio][value=refine]').checked = true;
+    $("#manswer").hide();
+    $("#matt").hide();
+    $("#mlink").hide();
+
+
+
+
+
 
 });
 
 
 $
 
-("#b-explore").click(function ( ){
+("#b-explore").click(function () {
     alert("Forward Exploration.");
-  if (explore == 'f') {
+    if (explore == 'f') {
 
-      cnodes0.push({ id: 'S4',
-          label: "S4",
-          color: "#2B7CE9",
-          value: 10,
-      });
+        cnodes0.push({
+            id: 'S4',
+            label: "S4",
+            color: "#2B7CE9",
+            value: 10,
+        });
 
-      cedges0.push({
+        cedges0.push({
 
-          from: 'S2',
-          to: 'S4',
-          color: "#2B7CE9",
-          width: 3.5,
-          arrows: "to",
-          length:25,
+            from: 'S2',
+            to: 'S4',
+            color: "#2B7CE9",
+            width: 3.5,
+            arrows: "to",
+            length: 25,
 
-      });
+        });
 
-      draw1(0);
-      $(".e-backward").show();
-      $('#mtablebody').append(' <tr>\n' +
-          '                                                    <th >S3</th>\n' +
-          '                                                    <td>(v0,v1)</td>\n' +
-          '                                                    <td>φ3</td>\n' +
-          '                                                    <td>add(v1,v2),variantOf</td>\n' +
-          '\n' +
-          '                                                </tr>');
+        draw1(0);
+        $(".e-backward").show();
+
+        $('#mtablebody').append('  <tr>\n' +
+            '        <th >S3</th>\n' +
+            '        <td>(v0,v1)</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">φ3</td>\n' +
+            '            <td>merge(v0,v1)</td>\n' +
+            '\n' +
+            '            </tr>');
 
 
-  } else {
-      cnodes0.push({ id: 'S3',
-          label: "S3",
-          color: "#2B7CE9",
-          value: 10,});
+    } else {
+        cnodes0.push({
+            id: 'S3',
+            label: "S3",
+            color: "#2B7CE9",
+            value: 10,
+        });
 
-      cedges0.push({
-          from: 'Sr',
-          to: 'S3',
-          color: "#2B7CE9",
-          width: 3.5,
-          arrows: "to",
-          length: 40,
-      });
-      draw1(0);
+        cedges0.push({
+            from: 'Sr',
+            to: 'S3',
+            color: "#2B7CE9",
+            width: 3.5,
+            arrows: "to",
+            length: 40,
+        });
+        draw1(0);
 
-      alert("There is no explanation!")
+        alert("There is no explanation!")
 
-  }
+    }
 
 
 });
@@ -765,7 +757,7 @@ $("#e-radios").find('input[type=radio][name=bidi]').change(function () {
 
     if (this.value == 'forward') {
 
-       explore = 'f';
+        explore = 'f';
 
     } else {
 
@@ -785,21 +777,19 @@ $('#sparqlb').on('click', function () {
 });
 
 
-
-
-var mnodes=[];
-var medges=[];
+var mnodes = [];
+var medges = [];
 
 mnodes.push({
     id: 'v2',
-    label: 'v2' + "\n" +"virus",
+    label: 'v2' + "\n" + "virus",
     group: "pattern",
     value: 10,
 });
 
 mnodes.push({
     id: 'v3',
-    label: 'v3' + '\n'+ "testing_method",
+    label: 'v3' + '\n' + "testing_method",
     group: "pattern",
     value: 10,
 });
@@ -827,15 +817,15 @@ medges.push({
     arrows: "to",
 });
 
-var mnodes1=[];
-var medges1=[];
+var mnodes1 = [];
+var medges1 = [];
 
-var mnodes2=[];
-var medges2=[];
+var mnodes2 = [];
+var medges2 = [];
 
 mnodes1.push({
     id: 'v1',
-    label: 'v1' + '\n'+ "virus",
+    label: 'v1' + '\n' + "virus",
     group: "pattern",
     value: 10,
 });
@@ -848,7 +838,7 @@ mnodes1.push({
 
 mnodes2.push({
     id: 'v1',
-    label: 'v1' + '\n'+ "virus",
+    label: 'v1' + '\n' + "virus",
     group: "pattern",
     value: 10,
 });
@@ -893,10 +883,9 @@ medges2.push({
 });
 
 
-
 // ----------
 
-function drawM () {
+function drawM() {
     var fm1node = [];
     var fm1edge = [];
 
@@ -1019,11 +1008,74 @@ function drawM () {
     var network1 = new vis.Network(container1, data1, options);
     var network2 = new vis.Network(container2, data2, options);
     network1.setOptions({
-        physics: {enabled:false}
+        physics: {enabled: false}
     });
     network2.setOptions({
-        physics: {enabled:false}
+        physics: {enabled: false}
     });
 
 }
 
+$(function () {
+    $('#exampleRuleModal').modal({
+        keyboard: true,
+        backdrop: "static",
+        show: false,
+
+    }).on('show', function () {
+
+    });
+
+    $("#mtablebody").find('tr td[data-id]').on('click', function () {
+
+        //do all your operation populate the modal and open the modal now. DOnt need to use show event of modal again
+        if ($(this).data('id') == 1) {
+            $('#rule-modal-body').html($('<ul>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 RNA</li>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 virus</li>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u3 testing_method</li>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 possess u1</li>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 testedBy u3</li>\n' +
+                '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 testedBy u3 &nbsp;(link reference)</li>\n' +
+                '</ul>'));
+            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleRuleModal').modal('show');
+        } else if ($(this).data('id') == 2) {
+
+            $('#rule-modal-body').html($('<ul>\n' +
+                '    <li style="text-align: justify;">u4 RNA</li>\n' +
+                '    <li style="text-align: justify;">u4&rsquo; RNA</li>\n' +
+                '    <li style="text-align: justify;">u5 disease</li>\n' +
+                '    <li style="text-align: justify;">u6 testing_method</li>\n' +
+                '    <li style="text-align: justify;">u7 disease</li>\n' +
+                '    <li style="text-align: justify;">u8 testing_method</li>\n' +
+                '    <li style="text-align: justify;">u4 causedBy u5</li>\n' +
+                '    <li style="text-align: justify;">u4&rsquo; causedBy u7</li>\n' +
+                '    <li style="text-align: justify;">u4 testedBy u6</li>\n' +
+                '    <li style="text-align: justify;">u4&rsquo; testedBy u8</li>\n' +
+                '</ul>'));
+            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleRuleModal').modal('show');
+        }
+
+    });
+
+    $(document).on("click", ".rule" , function() {
+
+        if($(this).data('id') == 3) {
+
+            $('#rule-modal-body').html($('<ul>\n' +
+                '    <li style="text-align: justify;">u1 virus</li>\n' +
+                '    <li style="text-align: justify;">u2 virus</li>\n' +
+                '    <li style="text-align: justify;">u3 disease</li>\n' +
+                '    <li style="text-align: justify;">u1 causedBy u3</li>\n' +
+                '    <li style="text-align: justify;">u2 causedBy u3</li>\n' +
+                '    <li style="text-align: justify;">u1 variantOf u2</li>\n' +
+                '    <li style="text-align: justify;">literal: u1.realm = u2.realm</li>\n' +
+                '</ul>'));
+            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleRuleModal').modal('show');
+        }
+    });
+
+});
