@@ -194,3 +194,7 @@ label{font-size: 10px;}
 
 #forward1 {height: 100px; width: 150px;}
 #forward2 {height: 100px; width: 150px;}
+
+#answer:hover{cursor: pointer;}
+
+#mynetwork_graph_info {width: 100%; height: 750px;}

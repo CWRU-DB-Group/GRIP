@@ -259,6 +259,10 @@
 
                                     <div class="row form-group" id="radios">
                                         <div class="radio-custom radio-primary col-md-4">
+                                            <input id="refine" name="miss" type="radio" value="refine"/>
+                                            <label style="font-size: 16px" for="awesome">Graph Refinement</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary col-md-4">
                                             <input id="awesome" name="miss" type="radio" value="awesome"/>
                                             <label style="font-size: 16px" for="awesome">Missing Link</label>
                                         </div>
@@ -297,14 +301,12 @@
                             <a href="#" class="fa fa-caret-down"></a>
                             <a href="#" class="fa fa-times"></a>
                         </div>
-                        <h2 class="panel-title">Performance Panel</h2>
+                        <h2 class="panel-title">Graph Information</h2>
                         <p class="panel-subtitle"></p>
                     </header>
 
                     <div class="panel-body" id="performance-p" style="height: 800px">
-                        <img src="1.png">
-                        <img src="2.png">
-
+                             <div id ="mynetwork_graph_info"></div>
                     </div>
                 </section>
 

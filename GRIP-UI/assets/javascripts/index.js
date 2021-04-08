@@ -6,7 +6,9 @@ var pnodeslist = [];
 var pedgeslist = [];
 var explore = null;
 
-
+var nodes = [];
+var edges = [];
+var network = null;
 
 
 var LENGTH_MAIN = 350,
@@ -21,6 +23,167 @@ var LENGTH_MAIN = 350,
     BLACK = "#2B1B17";
 
 // Called when the Visualization API is loaded.
+$(document).on("click", "#answer", function (e) {
+
+    alert("Showing data graph.");
+    nodes.push({
+        id:1 ,
+        label: "COVID-19",
+        group: "error",
+        value: 5,
+        font: {
+            size: 20,
+        },
+        title : "Type:Disease"+"\n"+"Name:COVID-19",
+
+    });
+
+    nodes.push({
+        id:2 ,
+        label: "COVID-Virus",
+        group: "correct",
+        value: 5,
+        font: {
+            size: 20,
+        },
+        title : "Type:Virus"+"\n"+"Name:COVID-Virus",
+
+    });
+    nodes.push({
+        id:3 ,
+        label: "SARS-COV-2",
+        group: "correct",
+        value: 5,
+        font: {
+            size: 20,
+        },
+        title : "Type:Virus"+"\n"+"Name:SARS-COV-2"+"\n" +"realm:Riboviria",
+
+    });
+    nodes.push({
+        id:4 ,
+        label: "rt-PRC",
+        group: "correct",
+        value: 5,
+        font: {
+            size: 20,
+        },
+        title : "Type:Testing_Method"+"\n"+"Name:rt-PRC",
+
+    });
+    nodes.push({
+        id:5 ,
+        label: "RNA",
+        group: "correct",
+        value: 5,
+        font: {
+            size: 20,
+        },
+        title : "Type:RNA"+"\n"+"Name:SARS-COV-2 RNA",
+
+    });
+
+    edges.push({
+        from: 2,
+        to: 1,
+        color: RED,
+        width: 1.5,
+        arrows: "to",});
+
+    edges.push({
+        from: 3,
+        to: 1,
+        color: RED,
+        width: 1.5,
+        arrows: "to",});
+    edges.push({
+        from: 3,
+        to: 5,
+        color: GRAY,
+        width: 1.5,
+        arrows: "to",});
+    edges.push({
+        from: 2,
+        to: 4,
+        color: GRAY,
+        width: 1.5,
+        arrows: "to",});
+
+    edges.push({
+        from: 5,
+        to: 4,
+        color: GRAY,
+        width: 1.5,
+        arrows: "to",});
+
+    edges.push({
+        from: 3,
+        to: 4,
+        color: ORANGE,
+        width: 1.5,
+        arrows: "to",
+        dashes: true});
+
+
+    draw2();
+    e.stopImmediatePropagation();
+});
+function draw2() {
+
+
+
+    // create a network
+    var container = document.getElementById("mynetwork_graph_info");
+
+    var data = {
+        nodes: nodes,
+        edges: edges,
+    };
+    var options = {
+
+        interaction: { hover: true },
+
+        nodes: {
+            scaling: {
+                min: 10,
+                max: 50,
+            },
+
+        },
+        edges: {
+            color: GRAY,
+            width: WIDTH_SCALE * 2
+        },
+
+        groups: {
+            error: {
+                shape: "dot",
+                color: RED, // orange
+                size: 10,
+            },
+            correct: {
+                shape: "dot",
+                color: "#2B7CE9", // blue
+                size: 10,
+            },
+
+        },
+
+    };
+    network = new vis.Network(container, data, options);
+    network.on("hoverNode", function (params) {
+        console.log("hoverNode Event:", params);
+    });
+
+
+
+
+
+}
+
+
+
+
 function draw1(cptid) {
 
     var container = document.getElementById("mynetwork");
@@ -67,6 +230,10 @@ function draw1(cptid) {
 
 
 function draw(nodes, edges, ctid, literals) {
+
+
+
+
 
     var container = document.getElementById("mynetwork" + ctid);
     var data = {
@@ -461,11 +628,6 @@ cedges1.push({
 
 
 
-
-
-
-
-
 $('#show-r').click(function () {
 
 
@@ -496,7 +658,13 @@ $('#show-r').click(function () {
 
 
 $("#radios").find('input[type=radio][name=miss]').change(function () {
-    if (this.value == 'awesome') {
+
+    if(this.value == 'refine') {
+        $("#manswer").hide();
+        $("#matt").hide();
+        $("#mlink").hide();
+
+    } else if (this.value == 'awesome') {
         $("#manswer").hide();
         $("#matt").hide();
         $("#mlink").show();
@@ -528,6 +696,10 @@ $(document).ready(function (){
         $(".e-backward").hide();
         $('img').hide();
         $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
+        document.querySelector('input[type=radio][value=refine]').checked = true;
+        $("#manswer").hide();
+        $("#matt").hide();
+        $("#mlink").hide();
 
 });
 
@@ -535,7 +707,7 @@ $(document).ready(function (){
 $
 
 ("#b-explore").click(function ( ){
-    alert("dddddd");
+    alert("Forward Exploration.");
   if (explore == 'f') {
 
       cnodes0.push({ id: 'S4',
@@ -604,13 +776,15 @@ $("#e-radios").find('input[type=radio][name=bidi]').change(function () {
 $('#sparqlb').on('click', function () {
 
 
-    $("#queryanswer").find('tbody').append("<tr >\n" +
+    $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
         "                                        <td>v2</td>\n" +
         "                                        <td>name:SARS-COV-2</td>\n" +
         "                                        <td>realm:Riboriria</td>\n" +
         "                                    </tr>");
 
 });
+
+
 
 
 var mnodes=[];
@@ -852,3 +1026,4 @@ function drawM () {
     });
 
 }
+
