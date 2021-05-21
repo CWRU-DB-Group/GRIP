@@ -4,6 +4,8 @@
     <list default="true" id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GRIP-UI/assets/stylesheets/theme-custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/assets/stylesheets/theme-custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GRIP-UI/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,8 @@
       <workItem from="1611950787664" duration="11138000" />
       <workItem from="1615348599376" duration="52000" />
       <workItem from="1616619425079" duration="1488000" />
-      <workItem from="1617475613181" duration="18997000" />
+      <workItem from="1617475613181" duration="20087000" />
+      <workItem from="1621616591732" duration="1632000" />
     </task>
     <servers />
   </component>
@@ -78,12 +81,13 @@
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state x="447" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1680.23.1680.1027/0.23.1680.980@0.23.1680.980" timestamp="1609841302776" />
-    <state x="1696" y="23" width="1306" height="957" key="dock-window-1" timestamp="1617843372491">
-      <screen x="1680" y="23" width="1680" height="1027" />
+    <state x="1720" y="991" width="1050" height="957" key="dock-window-1" timestamp="1618351817688">
+      <screen x="1680" y="88" width="1050" height="1657" />
     </state>
     <state x="1696" y="23" width="1306" height="957" key="dock-window-1/1680.23.1680.1027/0.23.1680.977@0.23.1680.977" timestamp="1617843372491" />
     <state x="337" y="189" width="1245" height="959" key="dock-window-1/1680.23.1680.1027/0.23.1680.979@0.23.1680.979" timestamp="1615348650340" />
     <state x="1838" y="94" width="1245" height="963" key="dock-window-1/1680.23.1680.1027/0.23.1680.983@0.23.1680.983" timestamp="1610451711314" />
+    <state x="1720" y="991" width="1050" height="957" key="dock-window-1/1680.88.1050.1657/0.23.1680.977@0.23.1680.977" timestamp="1618351817688" />
     <state x="1715" y="130" width="1480" height="777" key="dock-window-2" timestamp="1616619450389">
       <screen x="1680" y="23" width="1680" height="1027" />
     </state>

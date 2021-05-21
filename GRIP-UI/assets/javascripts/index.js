@@ -783,6 +783,18 @@ $('#sparqlb').on('click', function () {
         "                                        <td>realm:Riboriria</td>\n" +
         "                                    </tr>");
 
+    $("#suggest").find('tbody').append("<tr>\n" +
+        "                                        <td>v5</td>\n" +
+        "                                        <td>name:COVID-Virus</td>\n" +
+        "                                        <td>--</td>\n" +
+        "                                    </tr>");
+    $("#suggest").find('tbody').append("<tr>\n" +
+        "                                        <td>v6</td>\n" +
+        "                                        <td>name:COVID-N440K</td>\n" +
+        "                                        <td>--</td>\n" +
+        "                                    </tr>");
+
+
 });
 
 
