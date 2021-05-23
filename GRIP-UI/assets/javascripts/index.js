@@ -9,7 +9,6 @@ var nodes = [];
 var edges = [];
 var network = null;
 
-
 var LENGTH_MAIN = 350,
     LENGTH_SERVER = 150,
     LENGTH_SUB = 50,
@@ -283,8 +282,10 @@ function draw(nodes, edges, ctid, literals) {
         },
     };
     var network = new vis.Network(container, data, options);
+   if (literals.length != 0) {
+       $("#literal" + ctid).append("Literals: "+ literals);
+   }
 
-    $("#literal" + ctid).append(literals);
     // network.on("click", function (params) {
     //
     //
@@ -438,13 +439,24 @@ function appendRule(text) {
     }
 
 
-    $('#rule-dis').append("<div class=\"tab-pane\"" +
-        "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
-        "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
-        "\n" +
-        "                                        </div>\n" + "  <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">Constraint" + " " + ctid + "</label>" +
-        "                                    </div>\n");
 
+
+
+   if (flag) {
+       $('#rule-dis').append("<div class=\"tab-pane\"" +
+           "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
+           "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+           "\n" +
+           "                                        </div>\n" + "  <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GK" + " " + ctid + "</label>" +
+           "                                    </div>\n");
+   } else {
+       $('#rule-dis').append("<div class=\"tab-pane\"" +
+           "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
+           "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+           "\n" +
+           "                                        </div>\n" + " <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GAR" + " " + ctid + "</label>" +
+           "                                    </div>\n");
+   }
 
     draw(nodes, edges, ctid, literals);
 
@@ -775,6 +787,12 @@ $("#e-radios").find('input[type=radio][name=bidi]').change(function () {
 });
 
 $('#sparqlb').on('click', function () {
+
+
+
+        $("#queryanswer").find('tbody').empty();
+        $("#suggest").find('tbody').empty();
+
 
 
     $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
