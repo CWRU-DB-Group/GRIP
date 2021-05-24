@@ -20,6 +20,55 @@ var LENGTH_MAIN = 350,
     GRAY = "gray",
     BLACK = "#2B1B17";
 
+function draw2() {
+
+
+    // create a network
+    var container = document.getElementById("mynetwork_graph_info");
+
+    var data = {
+        nodes: nodes,
+        edges: edges,
+    };
+    var options = {
+
+        interaction: {hover: true},
+
+        nodes: {
+            scaling: {
+                min: 10,
+                max: 50,
+            },
+
+        },
+        edges: {
+            color: GRAY,
+            width: WIDTH_SCALE * 2
+        },
+
+        groups: {
+            error: {
+                shape: "dot",
+                color: RED, // orange
+                size: 10,
+            },
+            correct: {
+                shape: "dot",
+                color: "#2B7CE9", // blue
+                size: 10,
+            },
+
+        },
+
+    };
+    network = new vis.Network(container, data, options);
+    network.on("hoverNode", function (params) {
+        console.log("hoverNode Event:", params);
+    });
+
+
+}
+
 // Called when the Visualization API is loaded.
 $(document).on("click", "#answer", function (e) {
 
@@ -133,54 +182,7 @@ $(document).on("click", "#answer", function (e) {
     e.stopImmediatePropagation();
 });
 
-function draw2() {
 
-
-    // create a network
-    var container = document.getElementById("mynetwork_graph_info");
-
-    var data = {
-        nodes: nodes,
-        edges: edges,
-    };
-    var options = {
-
-        interaction: {hover: true},
-
-        nodes: {
-            scaling: {
-                min: 10,
-                max: 50,
-            },
-
-        },
-        edges: {
-            color: GRAY,
-            width: WIDTH_SCALE * 2
-        },
-
-        groups: {
-            error: {
-                shape: "dot",
-                color: RED, // orange
-                size: 10,
-            },
-            correct: {
-                shape: "dot",
-                color: "#2B7CE9", // blue
-                size: 10,
-            },
-
-        },
-
-    };
-    network = new vis.Network(container, data, options);
-    network.on("hoverNode", function (params) {
-        console.log("hoverNode Event:", params);
-    });
-
-
-}
 
 
 function draw1(cptid) {
@@ -282,9 +284,9 @@ function draw(nodes, edges, ctid, literals) {
         },
     };
     var network = new vis.Network(container, data, options);
-   if (literals.length != 0) {
-       $("#literal" + ctid).append("Literals: "+ literals);
-   }
+    if (literals.length != 0) {
+        $("#literal" + ctid).append("Literals: " + literals);
+    }
 
     // network.on("click", function (params) {
     //
@@ -295,9 +297,11 @@ function draw(nodes, edges, ctid, literals) {
 
 }
 
-$("#load-rule").click(function () {
+$("#query-confirm").click(function () {
+    $("#query-id").text("Q1");
+});
 
-
+$("#c-confirm").click(function () {
     var text1 = "c\n" +
         "u1 RNA\n" +
         "u2 virus\n" +
@@ -336,11 +340,80 @@ $("#load-rule").click(function () {
         "u3 usedBy u2\n" +
         "u1 testedBy u2 *";
 
-    appendRule(text1);
-    appendRule(text2);
-    appendRule(text3);
-    appendRule(text4);
-    alert("Done loading constraints.")
+    if ($("#ms_example2").val() == 1) {
+        appendRule(text1);
+    }
+    if ($("#ms_example2").val() == 2) {
+        appendRule(text2);
+    }
+    if ($("#ms_example2").val() == 3) {
+        appendRule(text3);
+    }
+    if ($("#ms_example2").val() == 4) {
+        appendRule(text4);
+    }
+
+    // appendRule(text2);
+    // appendRule(text3);
+    // appendRule(text4);
+});
+
+
+
+$("#c-browse").click(function () {
+
+
+
+    $('#exampleConstraintModal').modal({
+        keyboard: true,
+        backdrop: "static",
+        show: false,
+
+    }).on('show', function () {
+
+    });
+
+
+    //do all your operation populate the modal and open the modal now. DOnt need to use show event of modal again
+    if ($("#ms_example2").val() == 1) {
+    
+        $('#constraint-modal-body').html($('<ul>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 RNA</li>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 virus</li>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u3 testing_method</li>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 possess u1</li>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 testedBy u3</li>\n' +
+            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 testedBy u3 &nbsp;(link reference)</li>\n' +
+            '</ul>'));
+        $('#exampleModalLabel4').text("Description of " + "GAR 1");
+        $('#exampleConstraintModal').modal('show');
+    }
+    else if ($(this).data('id') == 2) {
+
+        $('#rule-modal-body').html($('<ul>\n' +
+            '    <li style="text-align: justify;">u4 RNA</li>\n' +
+            '    <li style="text-align: justify;">u4&rsquo; RNA</li>\n' +
+            '    <li style="text-align: justify;">u5 disease</li>\n' +
+            '    <li style="text-align: justify;">u6 testing_method</li>\n' +
+            '    <li style="text-align: justify;">u7 disease</li>\n' +
+            '    <li style="text-align: justify;">u8 testing_method</li>\n' +
+            '    <li style="text-align: justify;">u4 causedBy u5</li>\n' +
+            '    <li style="text-align: justify;">u4&rsquo; causedBy u7</li>\n' +
+            '    <li style="text-align: justify;">u4 testedBy u6</li>\n' +
+            '    <li style="text-align: justify;">u4&rsquo; testedBy u8</li>\n' +
+            '</ul>'));
+        $('#exampleModalLabel4').text("Description of " + "GK 2");
+        $('#exampleConstraintModal').modal('show');
+    }
+
+
+});
+
+$("#load-rule").click(function () {
+
+
+
+    // alert("Done loading constraints.")
 
 
 });
@@ -439,24 +512,21 @@ function appendRule(text) {
     }
 
 
-
-
-
-   if (flag) {
-       $('#rule-dis').append("<div class=\"tab-pane\"" +
-           "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
-           "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
-           "\n" +
-           "                                        </div>\n" + "  <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GK" + " " + ctid + "</label>" +
-           "                                    </div>\n");
-   } else {
-       $('#rule-dis').append("<div class=\"tab-pane\"" +
-           "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
-           "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
-           "\n" +
-           "                                        </div>\n" + " <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GAR" + " " + ctid + "</label>" +
-           "                                    </div>\n");
-   }
+    if (flag) {
+        $('#rule-dis').append("<div class=\"tab-pane\"" +
+            "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
+            "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+            "\n" +
+            "                                        </div>\n" + "  <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GK" + " " + ctid + "</label>" +
+            "                                    </div>\n");
+    } else {
+        $('#rule-dis').append("<div class=\"tab-pane\"" +
+            "                                         aria-labelledby=\"home-tab" + ctid + "\">\n" +
+            "                                        <div style = \"border-style: groove; height=100px\" id=\"mynetwork" + ctid + "\" class=\"network\">\n" +
+            "\n" +
+            "                                        </div>\n" + " <div id =\"literal" + ctid + "\"></div>" + " <label class =\"center\">GAR" + " " + ctid + "</label>" +
+            "                                    </div>\n");
+    }
 
     draw(nodes, edges, ctid, literals);
 
@@ -470,12 +540,12 @@ $("#add-rule").click(function () {
     appendRule(text);
 
 });
-$('#SPARQL').val("SELECT ?virus\n" +
-    "{\n" +
-    "?disease rdfs:causedBy ?virus\n" +
-    "?disease rdfs:name “COVID-19”\n" +
-    "?virus rdfs:realm “Ribobiria”\n" +
-    "}");
+// $('#SPARQL').val("SELECT ?virus\n" +
+//     "{\n" +
+//     "?disease rdfs:causedBy ?virus\n" +
+//     "?disease rdfs:name “COVID-19”\n" +
+//     "?virus rdfs:realm “Ribobiria”\n" +
+//     "}");
 
 
 var cnodes0 = [];
@@ -528,7 +598,7 @@ cnodes0.push({
 });
 cnodes0.push({
     id: 'S1',
-    label: "S1",
+    label: "S1" + "\n" + "GAR 1",
     group: "pattern",
     color: RED,
     value: 10,
@@ -536,7 +606,7 @@ cnodes0.push({
 
 cnodes0.push({
     id: 'S2',
-    label: "S2",
+    label: "S2"+ "\n" + "GK 2",
     color: RED,
     group: "pattern",
     value: 10,
@@ -574,7 +644,7 @@ cnodes1.push({
 
 cnodes1.push({
     id: 'S1',
-    label: "S1",
+    label: "S1"+"\n" + "GAR 1",
     group: "pattern",
     value: 10,
     color: RED,
@@ -583,7 +653,7 @@ cnodes1.push({
 
 cnodes1.push({
     id: 'S2',
-    label: "S2",
+    label: "S2" +"\n" + "GK2",
     group: "pattern",
     value: 10,
     color: RED,
@@ -620,7 +690,7 @@ cedges1.push({
     color: "#2B7CE9",
     width: 3.5,
     arrows: "to",
-    length:25,
+    length: 25,
 
 });
 
@@ -691,15 +761,10 @@ $(document).ready(function () {
     $(".e-backward").hide();
     $('img').hide();
     $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
-    document.querySelector('input[type=radio][value=refine]').checked = true;
+    // document.querySelector('input[type=radio][value=refine]').checked = true;
     $("#manswer").hide();
     $("#matt").hide();
     $("#mlink").hide();
-
-
-
-
-
 
 });
 
@@ -712,8 +777,9 @@ $
 
         cnodes0.push({
             id: 'S4',
-            label: "S4",
+            label: "S4" + "\n" + "GAR 4",
             color: "#2B7CE9",
+            group: "pattern",
             value: 10,
         });
 
@@ -735,7 +801,7 @@ $
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S4</th>\n' +
             '        <td>(v0,v1)</td>\n' +
-            '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">φ3</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">GAR 3</td>\n' +
             '            <td>merge(v0,v1)</td>\n' +
             '\n' +
             '            </tr>');
@@ -744,8 +810,9 @@ $
     } else {
         cnodes0.push({
             id: 'S3',
-            label: "S3",
+            label: "S3"+ "\n" + "GAR 3",
             color: "#2B7CE9",
+            group: "pattern",
             value: 10,
         });
 
@@ -762,7 +829,7 @@ $
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S3</th>\n' +
             '        <td>(v0,v1)</td>\n' +
-            '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">φ4</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">GAR 4</td>\n' +
             '            <td>merge(v0,v1)</td>\n' +
             '\n' +
             '            </tr>');
@@ -789,10 +856,8 @@ $("#e-radios").find('input[type=radio][name=bidi]').change(function () {
 $('#sparqlb').on('click', function () {
 
 
-
-        $("#queryanswer").find('tbody').empty();
-        $("#suggest").find('tbody').empty();
-
+    $("#queryanswer").find('tbody').empty();
+    $("#suggest").find('tbody').empty();
 
 
     $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
@@ -801,17 +866,19 @@ $('#sparqlb').on('click', function () {
         "                                        <td>realm:Riboriria</td>\n" +
         "                                    </tr>");
 
-    $("#suggest").find('tbody').append("<tr>\n" +
-        "                                        <td>v5</td>\n" +
-        "                                        <td>name:COVID-Virus</td>\n" +
-        "                                        <td>--</td>\n" +
-        "                                    </tr>");
-    $("#suggest").find('tbody').append("<tr>\n" +
-        "                                        <td>v6</td>\n" +
-        "                                        <td>name:COVID-N440K</td>\n" +
-        "                                        <td>--</td>\n" +
-        "                                    </tr>");
+    // $("#suggest").find('tbody').append("<tr>\n" +
+    //     "                                        <td>v5</td>\n" +
+    //     "                                        <td>name:COVID-Virus</td>\n" +
+    //     "                                        <td>--</td>\n" +
+    //     "                                    </tr>");
+    // $("#suggest").find('tbody').append("<tr>\n" +
+    //     "                                        <td>v6</td>\n" +
+    //     "                                        <td>name:COVID-N440K</td>\n" +
+    //     "                                        <td>--</td>\n" +
+    //     "                                    </tr>");
 
+
+    draw2();
 
 });
 
@@ -1056,6 +1123,7 @@ function drawM() {
 }
 
 $(function () {
+
     $('#exampleRuleModal').modal({
         keyboard: true,
         backdrop: "static",
@@ -1077,7 +1145,7 @@ $(function () {
                 '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 testedBy u3</li>\n' +
                 '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 testedBy u3 &nbsp;(link reference)</li>\n' +
                 '</ul>'));
-            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleModalLabel').text("Description of " + "GAR 1");
             $('#exampleRuleModal').modal('show');
         } else if ($(this).data('id') == 2) {
 
@@ -1093,15 +1161,15 @@ $(function () {
                 '    <li style="text-align: justify;">u4 testedBy u6</li>\n' +
                 '    <li style="text-align: justify;">u4&rsquo; testedBy u8</li>\n' +
                 '</ul>'));
-            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleModalLabel').text("Description of " + "GK 2");
             $('#exampleRuleModal').modal('show');
         }
 
     });
 
-    $(document).on("click", ".rule" , function() {
+    $(document).on("click", ".rule", function () {
 
-        if($(this).data('id') == 3) {
+        if ($(this).data('id') == 3) {
 
             $('#rule-modal-body').html($('<ul>\n' +
                 '    <li style="text-align: justify;">u1 virus</li>\n' +
@@ -1112,7 +1180,7 @@ $(function () {
                 '    <li style="text-align: justify;">u1 variantOf u2</li>\n' +
                 '    <li style="text-align: justify;">literal: u1.realm = u2.realm</li>\n' +
                 '</ul>'));
-            $('#exampleModalLabel').text("Description of " + "φ" + $(this).data('id'));
+            $('#exampleModalLabel').text("Description of " + "GAR 3");
             $('#exampleRuleModal').modal('show');
         }
     });
