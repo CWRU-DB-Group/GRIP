@@ -652,15 +652,16 @@ $('#show-r').click(function () {
 
 
     if (scenario == 'missing-node') {
-        draw1(0);
-        $(".e-forward").show();
-        drawM();
+        setTimeout(function() {   draw1(0);
+            $(".e-forward").show();
+            drawM();}, 7000);
+
 
     } else if (scenario == 'missing-attr') {
 
-        draw1(0);
-        $(".e-forward").show();
-        drawM()
+        setTimeout(function() {   draw1(0);
+            $(".e-forward").show();
+            drawM();}, 7000);
 
     } else {
        alert("There is no explanation.");
@@ -714,8 +715,9 @@ $(document).ready(function () {
 
 });
 
-
-$
+$('#suggested-nodes').on('change', function() {
+    $("#input-node").empty();
+});
 
 ("#b-explore").click(function () {
 
@@ -811,12 +813,12 @@ $('#sparqlb').on('click', function () {
     $("#queryanswer").find('tbody').empty();
     $("#suggest").find('tbody').empty();
 
-
-    $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
+    setTimeout(function() {  $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
         "                                        <td><span>v2<img width=\"15px\" height=\"15px\" src=\"info.png\"/></span></td>\n" +
         "                                        <td>name:SARS-COV-2</td>\n" +
         "                                        <td>realm:Riboriria</td>\n" +
-        "                                    </tr>");
+        "                                    </tr>"); }, 5000);
+
 
     // $("#suggest").find('tbody').append("<tr>\n" +
     //     "                                        <td>v5</td>\n" +
