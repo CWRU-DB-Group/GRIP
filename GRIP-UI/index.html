@@ -71,7 +71,8 @@
                         <header class="panel-heading">
 
 
-                            <h2 class="panel-title">Query Construction</h2>
+                            <h2 class="panel-title"><span class="sec-title" data-toggle="tooltip" data-placement="right" title="Step 1: Query Construction - Select datasets, load or input SPARQL queries and get query results.">
+                                Query Construction</span></h2>
 
                         </header>
 
@@ -117,7 +118,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel2">Configuration</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel2">Add Query</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -128,10 +129,10 @@
                                                     <span class="input-group-text"
                                                           id="inputGroup-sizing-default">Query: </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="file"
                                                        aria-label="Sizing example input"
                                                        aria-describedby="inputGroup-sizing-default" value="Q1.txt"
-                                                       id="tpath" style="width: 200%">
+                                                       id="tpath" style="width: 100%">
                                                 <button type="button" class="btn btn-primary browse" id="rule-browse"
                                                         data-toggle="modal" data-target="#example-query-modal">Browse
                                                 </button>
@@ -211,7 +212,9 @@
                 <div class="col-md-12">
                     <section class="panel">
                         <header class="panel-heading" id="conspanel">
-                            <h2 class="panel-title">Adding Constraints</h2>
+
+                            <h2 class="panel-title"><span class="sec-title" data-toggle="tooltip" data-placement="right" title="Step2: Adding Constraings - Load or input graph constraints (such as GK, GAR, etc..) and visualize them.">
+                                Add Constraints</span></h2>
 
                         </header>
 
@@ -222,7 +225,7 @@
                             </div>
 
                         </div>
-                        <textarea class="form-control center" rows="3" placeholder="Input your rule"
+                        <textarea class="form-control" rows="3" placeholder="Input your rule"
                                   id="rule-text" style="margin-top: 2px"></textarea>
                         <footer class="panel-footer center">
                             <button class="btn btn-primary btn-xs" id="load-rule" data-toggle="modal"
@@ -252,16 +255,13 @@
 
                                 <span class="input-group-text">Constraints: </span>
 
-                                <select class="form-control" data-plugin-multiselect
-                                        id="ms_example2">
-                                    <option value="1" selected>GAR 1</option>
-                                    <option value="2">GK 2</option>
-                                    <option value="3">GAR 3</option>
-                                    <option value="4">GAR 4</option>
+                                <input type="file"
+                                       aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default"
+                                       id="cpath" style="width: 100%">
 
-                                </select>
                                 <button type="button" class="btn btn-primary browse" id="c-browse"
-                                        data-toggle="modal" data-target=" ">Browse
+                                       data-target="#exampleConstraintModal">Browse
                                 </button>
                             </div>
 
@@ -308,11 +308,10 @@
                 <div class="row">
                     <section class="panel ">
                         <header class="panel-heading">
-                            <div class="panel-actions">
-                                <a href="#" class="fa fa-caret-down"></a>
-                                <a href="#" class="fa fa-times"></a>
-                            </div>
-                            <h2 class="panel-title">Specifying Missing Answer</h2>
+                            <h2 class="panel-title"><span class="sec-title" data-toggle="tooltip" data-placement="right" title="Step 3: Specifing Missing Answer - Input missing elements, such as missing nodes, node attributes or links.">
+                                Specify Missing Answer</span></h2>
+
+
                             <p class="panel-subtitle"></p>
                         </header>
 
@@ -406,24 +405,34 @@
 
                                     </div>
 
-                                    <div class="row form-group center" id="manswer">
-                                        <div class="col-xs-6 form-group">
+                                    <div class="row" id="manswer">
+
+
+                                        <div class="col-xs-5">
+                                            <div class="pair">
+
                                             <select class="form-select form-select-sm" id="suggested-nodes">
-                                                <option selected class="center disabled">Suggested Nodes</option>
+                                                <option selected class="center disabled">Suggested</option>
                                                 <option class="center" value="1">v5</option>
                                                 <option class="center" value="2">v6</option>
-
-
                                             </select>
-                                            <label id="labelO">Or</label>
+                                                <label style="font-style: italic;">Choose from suggestions</label>
+                                            </div>
+
+
 
                                         </div>
-
-                                        <div class="col-xs-3" id="mn-input">
-
+                                        <div class="col-xs-5" id="labelO">
+                                        <label>Or</label>
+                                        </div>
+                                            <div class="col-xs-3" id="mn-input">
+                                            <div class="pair1">
                                             <input placeholder="Triple-S"
-                                                   class="form-control col-xs-3" value="v1"/>
+                                                   class="form-control " value="v1"/>
+                                                <span style="font-style: italic;">Specify by input</span>
+                                            </div>
                                         </div>
+
 
 
                                     </div>
@@ -432,16 +441,16 @@
                                     <div class="row form-group" id="radios">
                                         <div class="radio-custom radio-primary col-md-4">
                                             <input id="no-awesome" name="miss" type="radio"
-                                                   value="no-awesome"/>
+                                                   value="missing-node"/>
                                             <label style="font-size: 16px" for="no-awesome">Missing Node</label>
                                         </div>
                                         <div class="radio-custom radio-primary col-md-4">
                                             <input id="very-awesome" name="miss" type="radio"
-                                                   value="very-awesome"/>
+                                                   value="missing-attr"/>
                                             <label style="font-size: 16px" for="very-awesome">Missing Attribute</label>
                                         </div>
                                         <div class="radio-custom radio-primary col-md-4">
-                                            <input id="awesome" name="miss" type="radio" value="awesome"/>
+                                            <input id="awesome" name="miss" type="radio" value="missing-link"/>
                                             <label style="font-size: 16px" for="awesome">Missing Link</label>
                                         </div>
 
@@ -466,17 +475,71 @@
                 <section class="panel" style="width: 460px">
 
                     <header class="panel-heading">
-                        <div class="panel-actions">
-                            <a href="#" class="fa fa-caret-down"></a>
-                            <a href="#" class="fa fa-times"></a>
-                        </div>
+
                         <h2 class="panel-title">Graph Information</h2>
-                        <p class="panel-subtitle"></p>
+
+
                     </header>
 
-                    <div class="panel-body" id="performance-p" style="height: 800px">
+                    <div class="panel-body" id="performance-p">
+
+
+                        <h5 class="panel-highlight-title">Subgraph Visualization</h5>
+
                         <div id="mynetwork_graph_info"></div>
+                        <h5 class="panel-highlight-title">Node Information</h5>
+
+
+                        <table class="table table-striped" id="node-info-table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Node ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Kingdom</th>
+                                <th scope="col">Family</th>
+                                <th scope="col">Realm</th>
+
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">v1</th>
+                                <td>COVID-Virus</td>
+                                <td>Orthornavirae</td>
+                                <td>Coronaviridae</td>
+                                <td>Riboviria</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">v2</th>
+                                <td>SARS‑CoV‑2</td>
+                                <td>Orthornavirae</td>
+                                <td>Coronaviridae</td>
+                                <td>Riboviria</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">v5</th>
+                                <td>COVID-N440K</td>
+                                <td>Orthornavirae</td>
+                                <td>Coronaviridae</td>
+                                <td>Riboviria</td>
+                            </tr>
+
+
+
+                            </tbody>
+
+                        </table>
+
                     </div>
+
+
+
+
+
                 </section>
 
 
@@ -487,8 +550,11 @@
                 <div>
                     <section class="panel " id="exp-panel">
                         <header class="panel-heading">
-                            <h2 class="panel-title">Exploring Explanations</h2>
-                            <p class="panel-subtitle"></p>
+
+                            <h2 class="panel-title"><span class="sec-title" data-toggle="tooltip" data-placement="right" title="Step 4: Exploring Explanations - Visualize explanations of missing elements and enable exploration on the provenance tree.">
+                                Explore Explanations</span></h2>
+
+
                         </header>
 
                         <div class="panel-body" style="height: 560px" id="epanel-body">
@@ -549,7 +615,7 @@
 
                                 <div class="col-lg-6 ">
 
-                                    <h5 i="lexp" style="font-size: 16px">
+                                    <h5   class="e-forward" style="font-size: 16px">
                                         Explanation
 
                                     </h5>

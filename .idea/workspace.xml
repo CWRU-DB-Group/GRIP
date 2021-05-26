@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/GRIP-UI/info.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRIP-UI/assets/stylesheets/theme-custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/assets/stylesheets/theme-custom.css" afterDir="false" />
@@ -26,10 +27,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GRIP-UI" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/GRIP-UI" />
       <recent name="$PROJECT_DIR$/octopus" />
     </key>
   </component>
@@ -69,7 +71,7 @@
       <workItem from="1615348599376" duration="52000" />
       <workItem from="1616619425079" duration="1488000" />
       <workItem from="1617475613181" duration="20087000" />
-      <workItem from="1621616591732" duration="29882000" />
+      <workItem from="1621616591732" duration="60589000" />
     </task>
     <servers />
   </component>
@@ -87,20 +89,25 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="1944" y="-21" width="1080" height="1861" key="dock-window-1" timestamp="1621887590896">
-      <screen x="1920" y="-21" width="1080" height="1897" />
+    <state x="485" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1622000938863">
+      <screen x="0" y="23" width="1920" height="1006" />
+    </state>
+    <state x="485" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622000938863" />
+    <state x="303" y="147" width="1305" height="1006" key="dock-window-1" timestamp="1622052674407">
+      <screen x="0" y="23" width="1920" height="1006" />
     </state>
     <state x="1696" y="23" width="1306" height="957" key="dock-window-1/1680.23.1680.1027/0.23.1680.977@0.23.1680.977" timestamp="1617843372491" />
     <state x="337" y="189" width="1245" height="959" key="dock-window-1/1680.23.1680.1027/0.23.1680.979@0.23.1680.979" timestamp="1615348650340" />
     <state x="1720" y="991" width="1050" height="957" key="dock-window-1/1680.88.1050.1657/0.23.1680.977@0.23.1680.977" timestamp="1618351817688" />
-    <state x="1944" y="-21" width="1080" height="1861" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1621887590896" />
+    <state x="303" y="147" width="1305" height="1006" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622052674407" />
+    <state x="296" y="152" width="1305" height="1006" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@1920.-21.1080.1897" timestamp="1622052468153" />
     <state x="1715" y="130" width="1480" height="777" key="dock-window-2" timestamp="1616619450389">
       <screen x="1680" y="23" width="1680" height="1027" />
     </state>
     <state x="1715" y="130" width="1480" height="777" key="dock-window-2/1680.23.1680.1027/0.23.1680.977@1680.23.1680.1027" timestamp="1616619450389" />
-    <state x="760" y="275" width="670" height="676" key="search.everywhere.popup" timestamp="1621887675234">
+    <state x="760" y="275" width="670" height="676" key="search.everywhere.popup" timestamp="1622046256450">
       <screen x="0" y="23" width="1920" height="1006" />
     </state>
-    <state x="760" y="275" width="670" height="676" key="search.everywhere.popup/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1621887675234" />
+    <state x="760" y="275" width="670" height="676" key="search.everywhere.popup/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622046256450" />
   </component>
 </project>

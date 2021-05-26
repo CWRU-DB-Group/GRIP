@@ -71,8 +71,10 @@ function draw2() {
 
 // Called when the Visualization API is loaded.
 $(document).on("click", "#answer", function (e) {
-
     alert("Showing data graph.");
+    $("#node-info-table").show();
+    nodes = [];
+    edges=[];
     nodes.push({
         id: 1,
         label: "COVID-19",
@@ -87,7 +89,7 @@ $(document).on("click", "#answer", function (e) {
 
     nodes.push({
         id: 2,
-        label: "COVID-Virus",
+        label: "v1" + "\n" + "COVID-Virus",
         group: "correct",
         value: 5,
         font: {
@@ -98,7 +100,7 @@ $(document).on("click", "#answer", function (e) {
     });
     nodes.push({
         id: 3,
-        label: "SARS-COV-2",
+        label: "v2" + "\n" + "SARS-COV-2",
         group: "correct",
         value: 5,
         font: {
@@ -298,10 +300,24 @@ function draw(nodes, edges, ctid, literals) {
 }
 
 $("#query-confirm").click(function () {
-    $("#query-id").text("Q1");
+    $("#query-id").text("Q1.txt");
+    $('#SPARQL').val("SELECT ?virus\n" +
+    "{\n" +
+    "?disease rdfs:causedBy ?virus\n" +
+    "?disease rdfs:name “COVID-19”\n" +
+    "?virus rdfs:realm “Ribobiria”\n" +
+    "}");
 });
 
 $("#c-confirm").click(function () {
+
+    if ($('#cpath').get(0).files.length === 0) {
+        alert("No constraints are selected!");
+        return;
+    }
+    $("#rule-dis").empty();
+    $("#rule-text").text("");
+    tid = 1;
     var text1 = "c\n" +
         "u1 RNA\n" +
         "u2 virus\n" +
@@ -340,22 +356,23 @@ $("#c-confirm").click(function () {
         "u3 usedBy u2\n" +
         "u1 testedBy u2 *";
 
-    if ($("#ms_example2").val() == 1) {
-        appendRule(text1);
-    }
-    if ($("#ms_example2").val() == 2) {
-        appendRule(text2);
-    }
-    if ($("#ms_example2").val() == 3) {
-        appendRule(text3);
-    }
-    if ($("#ms_example2").val() == 4) {
-        appendRule(text4);
-    }
 
-    // appendRule(text2);
-    // appendRule(text3);
-    // appendRule(text4);
+        appendRule(text1);
+
+
+        appendRule(text2);
+
+
+        appendRule(text3);
+
+
+        appendRule(text4);
+
+        $("#rule-text").text(text1+ "\n" + text2 + "\n"+ text3 +"\n"+ text3);
+        $("#rule-text").attr('disabled', 'disabled');
+
+
+
 });
 
 
@@ -375,36 +392,49 @@ $("#c-browse").click(function () {
 
 
     //do all your operation populate the modal and open the modal now. DOnt need to use show event of modal again
-    if ($("#ms_example2").val() == 1) {
-    
-        $('#constraint-modal-body').html($('<ul>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 RNA</li>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 virus</li>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u3 testing_method</li>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 possess u1</li>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u1 testedBy u3</li>\n' +
-            '    <li style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; u2 testedBy u3 &nbsp;(link reference)</li>\n' +
-            '</ul>'));
-        $('#exampleModalLabel4').text("Description of " + "GAR 1");
-        $('#exampleConstraintModal').modal('show');
-    }
-    else if ($(this).data('id') == 2) {
 
-        $('#rule-modal-body').html($('<ul>\n' +
-            '    <li style="text-align: justify;">u4 RNA</li>\n' +
-            '    <li style="text-align: justify;">u4&rsquo; RNA</li>\n' +
-            '    <li style="text-align: justify;">u5 disease</li>\n' +
-            '    <li style="text-align: justify;">u6 testing_method</li>\n' +
-            '    <li style="text-align: justify;">u7 disease</li>\n' +
-            '    <li style="text-align: justify;">u8 testing_method</li>\n' +
-            '    <li style="text-align: justify;">u4 causedBy u5</li>\n' +
-            '    <li style="text-align: justify;">u4&rsquo; causedBy u7</li>\n' +
-            '    <li style="text-align: justify;">u4 testedBy u6</li>\n' +
-            '    <li style="text-align: justify;">u4&rsquo; testedBy u8</li>\n' +
-            '</ul>'));
-        $('#exampleModalLabel4').text("Description of " + "GK 2");
+        $('#constraint-modal-body').html($('<p>c (GAR 1)</p>\n' +
+            '<p>u1 RNA</p>\n' +
+            '<p>u2 virus</p>\n' +
+            '<p>u3 testing_method</p>\n' +
+            '<p>u2 possess u1</p>\n' +
+            '<p>u1 testedBy u3</p>\n' +
+            '<p>u2 testedBy u3 *</p>\n' +
+            '<p><br></p>\n' +
+            '<p>k (GK 2)</p>\n' +
+            '<p>u4 RNA</p>\n' +
+            '<p>u4&rsquo; RNA</p>\n' +
+            '<p>u5 disease</p>\n' +
+            '<p>u6 testing_method</p>\n' +
+            '<p>u7 disease</p>\n' +
+            '<p>u8 testing_method</p>\n' +
+            '<p>u4 causedBy u5</p>\n' +
+            '<p>u4&rsquo; causedBy u7</p>\n' +
+            '<p>u4 testedBy u6</p>\n' +
+            '<p>u4&rsquo; testedBy u8</p>\n' +
+            '<p><br></p>\n' +
+            '<p>c (GAR 3)</p>\n' +
+            '<p>u1 virus</p>\n' +
+            '<p>u2 virus</p>\n' +
+            '<p>u3 disease</p>\n' +
+            '<p>u1 causedBy u3</p>\n' +
+            '<p>u2 causedBy u3</p>\n' +
+            '<p>u1 variantOf u2 *</p>\n' +
+            '<p>l</p>\n' +
+            '<p>u1.realm = u2.realm</p>\n' +
+            '<p><br></p>\n' +
+            '<p>c (GAR 4)</p>\n' +
+            '<p>u1 virus</p>\n' +
+            '<p>u2 testing_method</p>\n' +
+            '<p>u3 enzyme</p>\n' +
+            '<p>u1 sensitiveTo u3</p>\n' +
+            '<p>u3 usedBy u2</p>\n' +
+            '<p>u1 testedBy u2 *</p>'));
+
+        $('#exampleModalLabel4').text("Description of " + "Constraints");
         $('#exampleConstraintModal').modal('show');
-    }
+
+
 
 
 });
@@ -536,16 +566,22 @@ function appendRule(text) {
 
 $("#add-rule").click(function () {
 
-    var text = $('#rule-text').val();
-    appendRule(text);
+   if( $("#rule-text").attr('disabled')) {
+    $("#rule-text").removeAttr('disabled');
+    $("#rule-text").text("");
+   } else {
+       if ($("#rule-text").val().length != 0) {
+           var text = $('#rule-text').val();
+           $("#rule-dis").empty();
+           appendRule(text);
+       } else {
+           alert("The input constraint is empty!");
+       }
+   }
+
 
 });
-// $('#SPARQL').val("SELECT ?virus\n" +
-//     "{\n" +
-//     "?disease rdfs:causedBy ?virus\n" +
-//     "?disease rdfs:name “COVID-19”\n" +
-//     "?virus rdfs:realm “Ribobiria”\n" +
-//     "}");
+
 
 
 var cnodes0 = [];
@@ -553,41 +589,16 @@ var cedges0 = [];
 
 pnodeslist[0] = cnodes0;
 pedgeslist[0] = cedges0;
-
-pnodeslist[1] = cnodes1;
-pedgeslist[1] = cedges1;
-pnodeslist[2] = cnodes2;
-pedgeslist[2] = cedges2;
-
-
 var cnodes1 = [];
 var cedges1 = [];
 
 var cnodes2 = [];
 var cedges2 = [];
 
-cnodes2.push({
-    id: 'Sr',
-    label: "Sr",
-    group: "pattern",
-    value: 10,
-});
-cnodes2.push({
-    id: 'S1',
-    label: "S1",
-    group: "pattern",
-    value: 10,
-});
-
-cedges2.push({
-    from: 'Sr',
-    to: 'S1',
-    color: GRAY,
-    width: 3.5,
-    label: "((v2,v3),(add(v2,v3),testedBy),φ1)",
-    arrows: "to",
-});
-
+pnodeslist[1] = cnodes1;
+pedgeslist[1] = cedges1;
+pnodeslist[2] = cnodes2;
+pedgeslist[2] = cedges2;
 
 cnodes0.push({
     id: 'Sr',
@@ -624,98 +635,35 @@ cedges0.push({
 
 
 cedges0.push({
-    from: 'S1',
-    to: 'S2',
-    color: RED,
-    width: 3.5,
-    arrows: "to",
-    length: 25,
-});
-
-
-cnodes1.push({
-    id: 'Sr',
-    label: "Sr",
-    group: "pattern",
-    value: 10,
-    color: RED,
-});
-
-
-cnodes1.push({
-    id: 'S1',
-    label: "S1"+"\n" + "GAR 1",
-    group: "pattern",
-    value: 10,
-    color: RED,
-
-});
-
-cnodes1.push({
-    id: 'S2',
-    label: "S2" +"\n" + "GK2",
-    group: "pattern",
-    value: 10,
-    color: RED,
-});
-
-// cnodes1.push({ id: 'S4',
-//     label: "S4",
-//     group: "pattern",
-//     value: 10,
-//     color: "#2B7CE9",
-// });
-
-
-cedges1.push({
-    from: 'Sr',
+    from: 'S2',
     to: 'S1',
     color: RED,
     width: 3.5,
     arrows: "to",
-});
-
-cedges1.push({
-    from: 'S1',
-    to: 'S2',
-    color: RED,
-    width: 3.5,
-    arrows: "to",
-});
-
-cedges1.push({
-
-    from: 'S2',
-    to: 'S4',
-    color: "#2B7CE9",
-    width: 3.5,
-    arrows: "to",
     length: 25,
-
 });
+
+
+
+
 
 
 $('#show-r').click(function () {
 
 
-    if (scenario == 'awesome') {
-        draw1(1);
+    if (scenario == 'missing-node') {
+        draw1(0);
         $(".e-forward").show();
         drawM();
 
-    } else if (scenario == 'very-awesome') {
+    } else if (scenario == 'missing-attr') {
 
         draw1(0);
         $(".e-forward").show();
         drawM()
 
     } else {
-
-        draw1(0);
-        $(".e-forward").show();
-        drawM();
-
-
+       alert("There is no explanation.");
     }
 
 });
@@ -729,39 +677,37 @@ $("#radios").find('input[type=radio][name=miss]').change(function () {
         $("#mlink").hide();
         scenario = 'refine';
 
-    } else if (this.value == 'awesome') {
+    } else if (this.value == 'missing-link') {
         $("#manswer").hide();
         $("#matt").hide();
         $("#mlink").show();
-        scenario = 'awesome';
+        scenario = 'missing-link';
 
 
-    } else if (this.value == 'very-awesome') {
+    } else if (this.value == 'missing-attr') {
         $("#manswer").hide();
         $("#matt").show();
         $("#mlink").hide();
-        scenario = 'very-awesome';
+        scenario = 'missing-attr';
 
-    } else if (this.value == 'no-awesome') {
+    } else if (this.value == 'missing-node') {
         $("#manswer").show();
         $("#matt").hide();
         $("#mlink").hide();
-        scenario = 'no-awesome';
-    } else {
-        scenario = 'refine';
+        scenario = 'missing-node';
     }
 });
 
 $(document).ready(function () {
 
     $("#query-answer").hide();
+    $("#node-info-table").hide();
     $("#matt").hide();
     $("#mlink").show();
     $(".e-forward").hide();
     $(".e-backward").hide();
     $('img').hide();
     $('.nav-tabs a[href="#' + 'home-tab' + '"]').tab('show');
-    // document.querySelector('input[type=radio][value=refine]').checked = true;
     $("#manswer").hide();
     $("#matt").hide();
     $("#mlink").hide();
@@ -772,9 +718,10 @@ $(document).ready(function () {
 $
 
 ("#b-explore").click(function () {
-    alert("Forward Exploration.");
-    if (explore == 'f') {
 
+
+    if (explore == 'f' && scenario == "missing-node") {
+        alert("Forward Exploration.");
         cnodes0.push({
             id: 'S4',
             label: "S4" + "\n" + "GAR 4",
@@ -785,7 +732,7 @@ $
 
         cedges0.push({
 
-            from: 'S2',
+            from: 'Sr',
             to: 'S4',
             color: "#2B7CE9",
             width: 3.5,
@@ -800,14 +747,17 @@ $
 
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S4</th>\n' +
-            '        <td>(v0,v1)</td>\n' +
+            '        <td>---</td>\n' +
             '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">GAR 3</td>\n' +
-            '            <td>merge(v0,v1)</td>\n' +
+            '            <td>---</td>\n' +
             '\n' +
             '            </tr>');
 
 
-    } else {
+
+
+    } else if(explore == 'b' && scenario == "missing-node") {
+        alert("Back Exploration.");
         cnodes0.push({
             id: 'S3',
             label: "S3"+ "\n" + "GAR 3",
@@ -817,7 +767,7 @@ $
         });
 
         cedges0.push({
-            from: 'Sr',
+            from: 'S2',
             to: 'S3',
             color: "#2B7CE9",
             width: 3.5,
@@ -828,14 +778,16 @@ $
 
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S3</th>\n' +
-            '        <td>(v0,v1)</td>\n' +
+            '        <td>---</td>\n' +
             '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">GAR 4</td>\n' +
-            '            <td>merge(v0,v1)</td>\n' +
+            '            <td>---</td>\n' +
             '\n' +
             '            </tr>');
 
-        alert("There is no explanation!")
 
+
+    } else {
+        alert("There is no explanation.")
     }
 
 
@@ -861,7 +813,7 @@ $('#sparqlb').on('click', function () {
 
 
     $("#queryanswer").find('tbody').append("<tr id=\"answer\">\n" +
-        "                                        <td>v2</td>\n" +
+        "                                        <td><span>v2<img width=\"15px\" height=\"15px\" src=\"info.png\"/></span></td>\n" +
         "                                        <td>name:SARS-COV-2</td>\n" +
         "                                        <td>realm:Riboriria</td>\n" +
         "                                    </tr>");
@@ -1185,4 +1137,8 @@ $(function () {
         }
     });
 
+});
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
 });
