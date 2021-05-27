@@ -765,9 +765,9 @@ $("#b-explore").click(function () {
 
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S4</th>\n' +
-            '        <td>---</td>\n' +
+            '        <td>(v4,v5) </td>\n' +
             '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">GAR 3</td>\n' +
-            '            <td>---</td>\n' +
+            '            <td>insert((v4,v5),causedBy)</td>\n' +
             '\n' +
             '            </tr>');
 
@@ -796,9 +796,9 @@ $("#b-explore").click(function () {
 
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S3</th>\n' +
-            '        <td>---</td>\n' +
+            '        <td>(v1,v7)</td>\n' +
             '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">GAR 4</td>\n' +
-            '            <td>---</td>\n' +
+            '            <td>insert((v1,v7),possess)</td>\n' +
             '\n' +
             '            </tr>');
 
