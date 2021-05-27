@@ -229,6 +229,19 @@ function draw1(cptid) {
         network.setOptions({physics: false});
     });
 
+    network.on("click", function (params) {
+
+        var nodeID = params.nodes[0];
+
+        if (nodeID == "S1"){
+            drawM1();
+        } else if (nodeID == "S2") {
+            drawM();
+        } else {
+            drawM1();
+        }
+    });
+
 }
 
 
@@ -635,8 +648,8 @@ cedges0.push({
 
 
 cedges0.push({
-    from: 'S2',
-    to: 'S1',
+    from: 'S1',
+    to: 'S2',
     color: RED,
     width: 3.5,
     arrows: "to",
@@ -654,14 +667,17 @@ $('#show-r').click(function () {
     if (scenario == 'missing-node') {
         setTimeout(function() {   draw1(0);
             $(".e-forward").show();
-            drawM();}, 7000);
+            $("#lexp").text("Match of S1")
+            drawM1();}, 2000);
 
 
     } else if (scenario == 'missing-attr') {
 
         setTimeout(function() {   draw1(0);
             $(".e-forward").show();
-            drawM();}, 7000);
+            $("#lexp").text("Match of S1")
+            drawM1();}, 2000);
+
 
     } else {
        alert("There is no explanation.");
@@ -719,7 +735,7 @@ $('#suggested-nodes').on('change', function() {
     $("#input-node").empty();
 });
 
-("#b-explore").click(function () {
+$("#b-explore").click(function () {
 
 
     if (explore == 'f' && scenario == "missing-node") {
@@ -817,7 +833,7 @@ $('#sparqlb').on('click', function () {
         "                                        <td><span>v2<img width=\"15px\" height=\"15px\" src=\"info.png\"/></span></td>\n" +
         "                                        <td>name:SARS-COV-2</td>\n" +
         "                                        <td>realm:Riboriria</td>\n" +
-        "                                    </tr>"); }, 5000);
+        "                                    </tr>"); }, 2000);
 
 
     // $("#suggest").find('tbody').append("<tr>\n" +
@@ -944,8 +960,108 @@ medges2.push({
 
 
 // ----------
+function drawM1() {
+
+    $("#lexp").text("Matches of S1");
+    var fm2node = [];
+    var fm2edge = [];
+
+    fm2node.push({
+        id: 'v1',
+        label: 'v2' + '\n' + "SARS-COV-2",
+        group: "pattern",
+        value: 10,
+    });
+    fm2node.push({
+        id: 'v2',
+        label: "SARS-COV-2_RNA",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm2node.push({
+        id: 'v3',
+        label: "rt-CPR",
+        group: "pattern",
+        value: 10,
+    });
+
+    fm2edge.push({
+        from: 'v1',
+        to: 'v2',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+
+    });
+
+    fm2edge.push({
+        from: 'v2',
+        to: 'v3',
+        color: "#2f9ad4",
+        width: 2,
+        arrows: "to",
+    });
+    fm2edge.push({
+        from: 'v1',
+        to: 'v3',
+        color: RED,
+        width: 2,
+        arrows: "to",
+        label: "testedBy",
+        dashes: true,
+    });
+
+    var container1 = document.getElementById("forward1");
+    var container2 = document.getElementById("forward2");
+    container1.innerHTML = "";
+    container2.innerHTML = "";
+
+    var data2 = {
+        nodes: fm2node,
+        edges: fm2edge,
+    };
+    var options = {
+        nodes: {
+            scaling: {
+                min: 10,
+            },
+            font: {
+                size: 20,
+            },
+        },
+        edges: {
+
+            smooth: false,
+            font: {
+                size: 25,
+            },
+            length: 25,
+            arrows: "to",
+        },
+
+        groups: {
+
+            pattern: {
+                shape: "dot",
+
+            },
+
+
+        },
+    };
+
+    var network1 = new vis.Network(container1, data2, options);
+
+    network1.setOptions({
+        physics: {enabled: false}
+    });
+
+
+}
 
 function drawM() {
+    $("#lexp").text("Matches of S2");
     var fm1node = [];
     var fm1edge = [];
 
@@ -1028,6 +1144,9 @@ function drawM() {
 
     var container1 = document.getElementById("forward1");
     var container2 = document.getElementById("forward2");
+    container1.innerHTML = "";
+    container2.innerHTML = "";
+
     var data1 = {
         nodes: fm1node,
         edges: fm1edge,
@@ -1067,12 +1186,16 @@ function drawM() {
     };
     var network1 = new vis.Network(container1, data1, options);
     var network2 = new vis.Network(container2, data2, options);
+    // var network3 = new vis.Network(container3, data2, options);
     network1.setOptions({
         physics: {enabled: false}
     });
     network2.setOptions({
         physics: {enabled: false}
     });
+    // network3.setOptions({
+    //     physics: {enabled: false}
+    // });
 
 }
 

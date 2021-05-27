@@ -70,7 +70,8 @@
       <workItem from="1615348599376" duration="52000" />
       <workItem from="1616619425079" duration="1488000" />
       <workItem from="1617475613181" duration="20087000" />
-      <workItem from="1621616591732" duration="61650000" />
+      <workItem from="1621616591732" duration="64094000" />
+      <workItem from="1622079674677" duration="5743000" />
     </task>
     <servers />
   </component>
@@ -92,14 +93,16 @@
       <screen x="0" y="23" width="1920" height="1006" />
     </state>
     <state x="485" y="148" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622000938863" />
-    <state x="1922" y="-8" width="1088" height="1868" maximized="true" key="dock-window-1" timestamp="1622054172803">
-      <screen x="1920" y="-21" width="1080" height="1897" />
+    <state x="93" y="51" width="1293" height="777" key="dock-window-1" timestamp="1622080684393">
+      <screen x="0" y="23" width="1920" height="1006" />
     </state>
     <state x="1696" y="23" width="1306" height="957" key="dock-window-1/1680.23.1680.1027/0.23.1680.977@0.23.1680.977" timestamp="1617843372491" />
     <state x="337" y="189" width="1245" height="959" key="dock-window-1/1680.23.1680.1027/0.23.1680.979@0.23.1680.979" timestamp="1615348650340" />
     <state x="1720" y="991" width="1050" height="957" key="dock-window-1/1680.88.1050.1657/0.23.1680.977@0.23.1680.977" timestamp="1618351817688" />
-    <state x="1922" y="-8" width="1088" height="1868" maximized="true" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622054172803" />
+    <state x="93" y="51" width="1293" height="777" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@0.23.1920.1006" timestamp="1622080684393" />
     <state x="296" y="152" width="1305" height="1006" key="dock-window-1/1920.-21.1080.1897/0.23.1920.1006@1920.-21.1080.1897" timestamp="1622052468153" />
+    <state x="577" y="213" width="1080" height="1006" key="dock-window-1/3000.65.1280.777/1920.23.1080.1897/0.23.1920.1006@1920.23.1080.1897" timestamp="1622079535252" />
+    <state x="3385" y="65" width="720" height="777" key="dock-window-1/3000.65.1280.777/1920.23.1080.1897/0.23.1920.1006@3000.65.1280.777" timestamp="1622079695676" />
     <state x="1715" y="130" width="1480" height="777" key="dock-window-2" timestamp="1616619450389">
       <screen x="1680" y="23" width="1680" height="1027" />
     </state>
