@@ -785,8 +785,8 @@ $("#b-explore").click(function () {
         });
 
         cedges0.push({
-            from: 'S2',
-            to: 'S3',
+            from: 'S3',
+            to: 'S2',
             color: "#2B7CE9",
             width: 3.5,
             arrows: "to",
