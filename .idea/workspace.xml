@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5223f30-84ce-4da4-bc5e-b9e0d1fff587" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GRIP-UI/assets/javascripts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
       <workItem from="1616619425079" duration="1488000" />
       <workItem from="1617475613181" duration="20087000" />
       <workItem from="1621616591732" duration="64094000" />
-      <workItem from="1622079674677" duration="7677000" />
+      <workItem from="1622079674677" duration="7837000" />
     </task>
     <servers />
   </component>

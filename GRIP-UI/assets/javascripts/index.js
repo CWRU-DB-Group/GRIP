@@ -742,7 +742,7 @@ $("#b-explore").click(function () {
         alert("Forward Exploration.");
         cnodes0.push({
             id: 'S4',
-            label: "S4" + "\n" + "GAR 4",
+            label: "S4" + "\n" + "GAR 3",
             color: "#2B7CE9",
             group: "pattern",
             value: 10,
@@ -766,7 +766,7 @@ $("#b-explore").click(function () {
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S4</th>\n' +
             '        <td>(v4,v5) </td>\n' +
-            '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">GAR 4</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="3" data-target="#ruleModal">GAR 3</td>\n' +
             '            <td>insert((v4,v5),causedBy)</td>\n' +
             '\n' +
             '            </tr>');
@@ -778,7 +778,7 @@ $("#b-explore").click(function () {
         alert("Back Exploration.");
         cnodes0.push({
             id: 'S3',
-            label: "S3"+ "\n" + "GAR 3",
+            label: "S3"+ "\n" + "GAR 4",
             color: "#2B7CE9",
             group: "pattern",
             value: 10,
@@ -797,7 +797,7 @@ $("#b-explore").click(function () {
         $('#mtablebody').append('  <tr>\n' +
             '        <th >S3</th>\n' +
             '        <td>(v1,v7)</td>\n' +
-            '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">GAR 3</td>\n' +
+            '        <td class="rule" data-toggle="modal" data-id="4" data-target="#ruleModal">GAR 4</td>\n' +
             '            <td>insert((v1,v7),possess)</td>\n' +
             '\n' +
             '            </tr>');
